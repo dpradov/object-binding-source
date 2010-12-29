@@ -1,0 +1,4 @@
+-------------------------------------------------------------
+Version: 1.0.0 -  date: 29/dic/2010
+
+First version of !ObjectBindingSource released by Daniel Prado
