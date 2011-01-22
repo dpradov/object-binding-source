@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Revisar los valores de los atributos del ensamblado
 
 <Assembly: AssemblyTitle("ObjectBindingSource")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("Extension to the standard BindingSource to provide support for nested property accessors")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("ObjectBindingSource")> 
 <Assembly: AssemblyCopyright("Copyright ©  2010")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.0.1.0")> 
+<Assembly: AssemblyFileVersion("1.0.1.0")> 

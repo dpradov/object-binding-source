@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ObjectBindingSourceDemo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Demo for ObjectBindingSource: Extension to the standard BindingSource to provide support for nested property accessors")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Visma Retail AS")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ObjectBindingSourceDemo")]
-[assembly: AssemblyCopyright("Copyright © Visma Retail AS 2007")]
+[assembly: AssemblyCopyright("Copyright © 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.1.0")]
