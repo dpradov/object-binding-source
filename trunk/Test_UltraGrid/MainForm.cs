@@ -35,15 +35,13 @@ public partial class MainForm : Form
         
         InitializeComponent();
 
-        //DBG.MaxNivelDepuracion = 2;
+        //DBG.MaxNivelDepuracion = 2;  
         DBG.MaxNivelDepuracion = -1;   // No debug information
 
         textBox1.Text = DBG.MaxNivelDepuracion.ToString();
-        
-        dataGridView1.AutoGenerateColumns = false;
-        dataGridView2.AutoGenerateColumns = false;
-
         CreateData();
+
+        
     }
 
     
@@ -71,11 +69,12 @@ public partial class MainForm : Form
 
         // With this helper class we can show and modify the enum type associated to the property using
         // a long description included in an attribute
+        /*
         Product_Type.DataSource = new EnumeratedValueCollection<ProductType>();
         Product_Type.ValueMember = "Value";
         Product_Type.DisplayMember = "Description";
         Product_Type.DataPropertyName = "Product_Type";
-
+        */
 
         customersBindingSource.DataSource = _customers;
         productsBindingSource.DataSource = _products;            
@@ -96,6 +95,7 @@ public partial class MainForm : Form
         _ordRef2 = new WeakReference(_customers[0].BillingAddress);
         MessageBox.Show(String.Format("Created WeakReference to the following objects: customers[0]= {0}   customers[0].BillingAddress= {1}", _ordRef.Target, _ordRef2.Target));
     }
+
 
     private void DeleteAll_Click(object sender, EventArgs e)
     {
@@ -166,14 +166,19 @@ public partial class MainForm : Form
 
     private void btnChange2_Click(object sender, EventArgs e)
     {
+        _customers[0].Name = _customers[0].Name + "*";
+        _products[0].Name = _products[0].Name + "*";
+        _products[1].Name = _products[1].Name + "$";
+    }
+
+    private void btnChange3_Click(object sender, EventArgs e)
+    {
         List<Order> orders = (List<Order>)ordersBindingSource.DataSource;
         //orders[1].Customer.Name = orders[1].Customer.Name + "^";
         //orders[0].Customer.Name = orders[0].Customer.Name + "^";
-        orders[0].OrderLines[0].Product = orders[1].OrderLines[1].Product;
-        orders[0].OrderLines[0].Quantity = orders[0].OrderLines[0].Quantity + 10;
 
-        _customers[0].Name = _customers[0].Name + "*";
-        _products[1].Name = _products[1].Name + "*";
+        orders[0].OrderLines[0].Product = orders[1].OrderLines[1].Product;
+        orders[1].OrderLines[0].Quantity = orders[1].OrderLines[0].Quantity + 10;
     }
 
     private void textBox1_Validated(object sender, EventArgs e)
@@ -182,7 +187,7 @@ public partial class MainForm : Form
         {
             DBG.MaxNivelDepuracion = Convert.ToInt32(textBox1.Text);
         }
-        catch
+        catch 
         { }
     }
 
@@ -196,6 +201,12 @@ public partial class MainForm : Form
             customersBindingSource.ResetBindings(false);
         }
     }
+
+    private void ordersBindingSource_ListChangedOnChildList(int row, object sender, ListChangedEventArgs e)
+    {            
+        ultraGrid1.Rows[row].ChildBands[0].Rows.Refresh(Infragistics.Win.UltraWinGrid.RefreshRow.RefreshDisplay);
+    }
+
 
     
 }
