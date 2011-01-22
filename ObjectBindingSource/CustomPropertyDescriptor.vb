@@ -82,11 +82,18 @@ Public Class CustomPropertyDescriptor
     ''' <param name="component">The component with the property for which to retrieve the value.</param>
     ''' <returns>The value of a property for a given component.</returns>
     Public Overrides Function GetValue(ByVal component As Object) As Object
-        Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, False)
-        If instance IsNot Nothing Then
-            Return DynamicAccessorFactory.GetDynamicAccessor(instance.GetType).GetPropertyValue(instance, _originalPropertyDescriptor.Name)
-        End If
-        Return Nothing
+        Try
+
+            Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, False)
+            If instance IsNot Nothing Then
+                Return DynamicAccessorFactory.GetDynamicAccessor(instance.GetType).GetPropertyValue(instance, _originalPropertyDescriptor.Name)
+            End If
+            Return Nothing
+
+        Catch ex As Exception
+            DBG.Foo(DBG_ChkNivel(0) AndAlso DBG.Log(0, String.Format("ERROR on CustomPropertyDescriptor.GetValue: {0}", DBG.MensajeError(ex))))
+            Return Nothing
+        End Try
     End Function
 
     ''' <summary>

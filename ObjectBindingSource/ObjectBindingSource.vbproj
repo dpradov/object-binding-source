@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -66,6 +67,12 @@
     <Compile Include="Auxiliar\Global.vb" />
     <Compile Include="CustomPropertyAttribute.vb" />
     <Compile Include="CustomPropertyDescriptor.vb" />
+    <Compile Include="FrmSelectionObjectsBindingSources.Designer.vb">
+      <DependentUpon>FrmSelectionObjectsBindingSources.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectionObjectsBindingSources.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmNestedProperties.Designer.vb">
       <DependentUpon>FrmNestedProperties.vb</DependentUpon>
     </Compile>
@@ -94,6 +101,7 @@
     <Compile Include="ObjectBindingSource.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SelectionObjectsBindingSourcesEditor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -115,16 +123,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UtilesC\UtilesC.csproj">
-      <Project>{6490CB19-D951-45E3-A16B-512BEDB8023B}</Project>
-      <Name>UtilesC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="FrmSelectionObjectsBindingSources.resx">
+      <DependentUpon>FrmSelectionObjectsBindingSources.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmNestedProperties.resx">
       <DependentUpon>FrmNestedProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectBindingSource.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilesC\UtilesC.csproj">
+      <Project>{6490CB19-D951-45E3-A16B-512BEDB8023B}</Project>
+      <Name>UtilesC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

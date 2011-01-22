@@ -54,7 +54,7 @@ Public Class NestedPropertiesEditor
             If (Not Me.edSvc Is Nothing) Then
                 Dim OBS As ObjectBindingSource = DirectCast(context.Instance, ObjectBindingSource)
                 Try
-                    Dim ItemType As Type = OBS._itemType
+                    Dim ItemType As Type = ListBindingHelper.GetListItemType(OBS.DataSource, OBS.DataMember)
                     form = New FrmNestedProperties(ItemType, DirectCast(value, String()))
                     If Me.edSvc.ShowDialog(form) = DialogResult.OK Then
                         value = form.BindableNestedProperties

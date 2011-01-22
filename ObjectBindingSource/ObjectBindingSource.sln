@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilesC", "..\UtilesC\Utile
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{C6BA9039-2E41-4AA7-89F7-2FFA95F88089}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_UltraGrid", "..\Test_UltraGrid\Test_UltraGrid.csproj", "{5A9DA06D-E46D-491F-BAB1-E0994429F4ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{C6BA9039-2E41-4AA7-89F7-2FFA95F88089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6BA9039-2E41-4AA7-89F7-2FFA95F88089}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6BA9039-2E41-4AA7-89F7-2FFA95F88089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A9DA06D-E46D-491F-BAB1-E0994429F4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9DA06D-E46D-491F-BAB1-E0994429F4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9DA06D-E46D-491F-BAB1-E0994429F4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9DA06D-E46D-491F-BAB1-E0994429F4ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
