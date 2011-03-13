@@ -913,7 +913,7 @@ Public Class ObjectBindingSource
     ' Internal array with the nested ObjectBindingSource components that manage the PropertyDescriptors of one
     ' property associated to a child list. This components are used as templates to the new ones that will be dinamically 
     ' created and referenced in _NestedBindingSources
-    Private _RelatedObjectBindingSources As ObjectBindingSource()
+    Private _RelatedObjectBindingSources As ObjectBindingSource() = New ObjectBindingSource() {}
 
     ' References each of the ObjectBindingSource component that provide support for changes in nested property accessors in child lists,
     ' via the listening of INotifyPropertyChanges.
