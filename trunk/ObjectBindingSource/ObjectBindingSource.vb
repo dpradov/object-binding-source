@@ -533,7 +533,7 @@ Public Class ObjectBindingSource
 
 
     ''' <summary>
-    ''' A partir de un objeto sobre el que se nos ha notificado de la modificación de una de sus propiedades
+    ''' A partir de un objeto sobre el que se nos ha notificado de la modificación de una de sus propiedades (o todas si PropertyName es Nothing o String.Empty)
     ''' identificar las propiedades anidadas que pueden verse afectadas. Éstas se devuelven a través de una relación
     ''' de números que corresponden al orden de éstas en _BindingNestedProperties
     ''' </summary>
@@ -720,7 +720,7 @@ Public Class ObjectBindingSource
     ''' <param name="PropertyModifiedName"></param>
     ''' <param name="Posiciones"></param>
     ''' <returns></returns>
-    ''' <remarks></remarks>
+    ''' <remarks>La propiedad puede venir a Nothing, indicando que todas (o cualquiera..) las propiedades han cambiado</remarks>
     Private Function CheckCanAppearInNestedProperty(ByVal Obj As Object, _
                                                        ByVal iNestedProperty As Integer, ByVal PropertyModifiedName As String, _
                                                        ByVal Posiciones As IList(Of Integer)) As Boolean
@@ -735,7 +735,7 @@ Public Class ObjectBindingSource
 
         If Obj.GetType Is _itemType Then
             DBG.Foo(DBG_ChkNivel(3) AndAlso DBG.Log(3, String.Format("Es un objeto del tipo del DataSource"), 3))
-            If nestedProperty(0) = PropertyModifiedName Then
+            If (PropertyModifiedName Is Nothing) Or nestedProperty(0) = PropertyModifiedName Then
                 Posiciones.Add(-1)
                 result = True
             End If
@@ -754,23 +754,25 @@ Public Class ObjectBindingSource
     End Function
 
 
+    ' La propiedad recibida puede venir a Nothing
+    ' (El evento PropertyChanged puede indicar que todas las propiedades del objeto han cambiado utilizando null (Nothing en Visual Basic) o String.Empty como el nombre de propiedad en PropertyChangedEventArgs.)
     Protected Sub NestedObject_PropertyChanged(ByVal sender As Object, ByVal e As PropertyChangedEventArgs)
         Try
-            ' "<<" y ">>" son propiedades claramente incorrectas, porque no se permite ninguna con ese nombre. Pero las podemos recibir desde ClienteNucleo 
-            ' porque(generándolas) podemos controlar si queremos lanzar el evento OnListChanged o no desde la clase BindingListEntidades(of T) (ver su método OnListChanged)
-            ' OnListChanged 
-            If e.PropertyName = "<<" Or e.PropertyName = ">>" Then Exit Sub
-
-
             Dim numNestedProperties As Integer
             Dim CurrentItemChanged As Boolean = False
+            Dim NewValue As Object = Nothing
+            Dim PropertyName As String = Nothing
 
-            Dim NewValue As Object = DynamicAccessorFactory.GetDynamicAccessor(sender.GetType).GetPropertyValue(sender, e.PropertyName)
+            If Not (e Is Nothing OrElse e.PropertyName = String.Empty) Then
+                PropertyName = e.PropertyName
+                NewValue = DynamicAccessorFactory.GetDynamicAccessor(sender.GetType).GetPropertyValue(sender, PropertyName)
+            End If
+
             DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] NestedObject_PropertyChanged ({1}) Object:{2}  New value:{3}", ID, e.PropertyName, sender, NewValue)))
 
             If UsingNestedProperties() Then
                 numNestedProperties = _BindableNestedProperties.Length
-                CurrentItemChanged = ManagePropertiesAffected(sender, e.PropertyName, NewValue)
+                CurrentItemChanged = ManagePropertiesAffected(sender, PropertyName, NewValue)
             Else
                 numNestedProperties = 0
             End If
@@ -940,6 +942,7 @@ Public Class ObjectBindingSource
         Get
             Return _RelatedObjectBindingSources
         End Get
+
         Set(ByVal value As ObjectBindingSource())
             RemoveNestedBindingSources()
             _RelatedObjectBindingSources = value
@@ -951,6 +954,8 @@ Public Class ObjectBindingSource
     ''' Gets the related ObjectBindingSource corresponding to the propertyDescriptor indicated
     ''' </summary>
     Private Function GetRelatedObjectBindingSource(ByVal prop As PropertyDescriptor) As ObjectBindingSource
+        If _RelatedObjectBindingSources Is Nothing Then Return Nothing
+
         If CType(prop, CustomPropertyDescriptor).PropertyType.GetInterface("IList") IsNot Nothing Then
 
             Dim typeProperty As Type = prop.PropertyType.GetProperty("Item").PropertyType  ' Otra forma de obtener el tipo de los items de una lista: Type type = list.GetType.GetGenericArguments(0)
