@@ -861,12 +861,13 @@ Public Class ObjectBindingSource
                     Next
 
                 Case ListChangedType.ItemAdded
-                    DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] OnListChanged [ItemAdded]: {1}", ID, MyBase.List(E.NewIndex))))
-                    PopulateNestedObjectsInRow(MyBase.List(E.NewIndex))
-
+                    If E.NewIndex <= MyBase.Count - 1 Then
+                        DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] OnListChanged [ItemAdded]: {1}", ID, MyBase.List(E.NewIndex))))
+                        PopulateNestedObjectsInRow(MyBase.List(E.NewIndex))
+                    End If
 
                 Case ListChangedType.Reset
-                    If _NestedObjects.Count > 0 AndAlso MyBase.List.Count = 0 Then
+                    If _NestedObjects.Count > 0 AndAlso MyBase.Count = 0 Then
                         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] OnListChanged [Reset (List cleared)]", ID)))
                         CreatePropertyDescriptors()
                     End If
