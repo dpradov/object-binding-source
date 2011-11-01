@@ -32,15 +32,13 @@ public partial class MainForm : Form
 
     public MainForm()
     {
+        //DBG.MaxNivelDepuracion = 2;  
+        DBG.MaxNivelDepuracion = -1;   // No debug information
         
         InitializeComponent();
 
-        //DBG.MaxNivelDepuracion = 2;  
-        DBG.MaxNivelDepuracion = -1;   // No debug information
-
         textBox1.Text = DBG.MaxNivelDepuracion.ToString();
         CreateData();
-
         
     }
 

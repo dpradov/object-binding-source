@@ -5,18 +5,6 @@ Partial Class ObjectBindingSource
     ''' </summary>
     Private components As System.ComponentModel.IContainer = Nothing
 
-    ''' <summary> 
-    ''' Clean up any resources being used.
-    ''' </summary>
-    ''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        If (disposing AndAlso (Not Me.components Is Nothing)) Then
-            CleanUP()
-            Me.components.Dispose()
-        End If
-        MyBase.Dispose(disposing)
-    End Sub
-
 #Region "Component Designer generated code"
 
     ''' <summary>
