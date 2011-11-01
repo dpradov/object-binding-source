@@ -4,6 +4,7 @@ Imports System.Drawing
 Imports System.Windows.Forms
 Imports System.Drawing.Design
 
+Imports System.Reflection
 
 
 '# ObjectBindingSource is based in code released by seesharper (http://www.codeproject.com/Members/seesharper) 
@@ -219,10 +220,12 @@ Public Class ObjectBindingSource
                     PopulateTypesInNestedProperties()
                     PopulateNestedObjects()
 
+#If DEBUG Then
                     If DBG.MaxNivelDepuracion > 0 Then
                         Show_TypesInNestedProperties()
                         Show_NestedObjects()
                     End If
+#End If
                 End If
 
             End If    ' If _itemType IsNot GetType(Object) Then
@@ -463,6 +466,7 @@ Public Class ObjectBindingSource
 
     End Sub
 
+#If DEBUG Then
 
     Private Sub Show_NestedObjects()
         DBG_SaltoLinea(0)
@@ -500,6 +504,8 @@ Public Class ObjectBindingSource
         Next
         DBG_SaltoLinea(0)
     End Sub
+
+#End If
 
 
     Private Sub PopulateObjectsInNestedPropertyForRow(ByVal objDataSource As Object, ByVal nestedPropertyName As String, ByRef objsInNestedProperty As ObjectsInNestedProperty)
@@ -1118,6 +1124,72 @@ Public Class ObjectBindingSource
         End If
 
     End Sub
+
+#End Region
+
+#Region "Fix problem Disposing BindingSource"
+
+    ' BindingSource disposing and related BindingSources (http://connect.microsoft.com/VisualStudio/feedback/details/434798/bindingsource-disposing-and-related-bindingsources)
+    '----------------------------------------
+    ' When BindingSource gets disposed, the related BindingSources do not get disposed.
+    ' Also, BindingSource.DataSource is set to another BindingSource, the assigned (right-hand side) should register
+    ' the assignee as a related BindingSource. This seems reasonable given the functionality of GetRelatedCurrencyManager
+    ' method. That also goes to the constructor which takes a datasource and datamember - it should register as related
+    ' BindingSource.
+    '
+    '  All in all, there is no mechanism to handle DataSource disposal. BindingSource should either:
+    ' - dispose if DataSource is disposed
+    ' - provide a hook so the user can determine whether to dispose or simply sever DataSource
+    '
+    ' Right now, it's not easy tracking them. 
+
+    ' This is sort of a workaround - I say that since it only works if somehow GetRelatedCurrencyManager was called to create the child BindingSource.
+    ' That seems to be the only time the relationship is tracked. For example, the constructor does not create this relationship, nor does DataSource 
+    ' property.
+
+    ' BindingSource on Disposing does not reset lastCurrentItem field (https://connect.microsoft.com/VisualStudio/feedback/details/434746/bindingsource-on-disposing-does-not-reset-lastcurrentitem-field)
+    '---------------------------------------
+    ' When BindingSource gets disposed, lastCurrentItem field does not get set to null.
+    ' The problem is that it may hold a reference to an object and prevents that object from being garbage-collected. There are cases 
+    ' where the references are cyclical and it is in those cases, that gets the BindingSource and the anything that these BindingSources
+    ' are bound to (via lastCurrentItem), pinned.
+
+    ' The only time lastCurrentItem gets set to null is when Current changes (via ParentCurrencyManager_CurrentItemChanged). My workaround
+    ' is to create a subclass of BindingSource and override Dispose to set DataSource to null. This way, events are still hooked up and the
+    ' above handler gets called, setting lastCurrentItem to null. Then base.Dispose will unhook events as before. This only works if 
+    ' DataSource implements ICurrencyManagerProvider but many do not, such as a simple List. So it's a workaround that only works for certain 
+    ' scenarios. 
+
+
+
+    ''' <summary> 
+    ''' Clean up any resources being used.
+    ''' </summary>
+    ''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If (disposing AndAlso (Not Me.components Is Nothing)) Then
+            CleanUP()
+
+            Dim relatedBindingSourcesField As FieldInfo = _
+                    GetType(BindingSource).GetField("relatedBindingSources", BindingFlags.Instance Or BindingFlags.NonPublic)
+            Dim relatedBindingSources = CType(relatedBindingSourcesField.GetValue(Me), Dictionary(Of String, BindingSource))
+            If relatedBindingSources IsNot Nothing Then
+                For Each key As String In relatedBindingSources.Keys
+                    relatedBindingSources(key).Dispose()
+                Next
+            End If
+
+            Me.components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+        If disposing Then
+            Dim lastCurrentItemField As FieldInfo = GetType(BindingSource).GetField("lastCurrentItem", BindingFlags.Instance Or BindingFlags.NonPublic)
+            If (lastCurrentItemField IsNot Nothing) Then
+                lastCurrentItemField.SetValue(Me, Nothing)
+            End If
+        End If
+    End Sub
+
 
 #End Region
 
