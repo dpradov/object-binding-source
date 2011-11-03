@@ -1,4 +1,32 @@
 -------------------------------------------------------------
+Version: 1.0.3   - date: 03/nov/2011
+
+Fix memory leak problem disposing !BindingSource, as indicated in the following pages:
+
+  * !BindingSource disposing and related !BindingSources
+(http://connect.microsoft.com/VisualStudio/feedback/details/434798
+/bindingsource-disposing-and-related-bindingsources)
+  * !BindingSource on Disposing does not reset !lastCurrentItem field
+(https://connect.microsoft.com/VisualStudio/feedback/details/434746
+/bindingsource-on-disposing-does-not-reset-lastcurrentitem-field)
+
+Other changes:
+  * Included check on OnListChanged when ListChangedType.ItemAdded to verify that E.NewIndex <= MyBase.Count - 1
+
+-------------------------------------------------------------
+Version: 1.0.2   - date: 13/mar/2011
+
+Bugfixes:
+
+  * Issue #4: !PropertyChanged with propertyName is null parameter is not working
+  * Issue #5: At design-time: "the object xxx returned a null value for the property '!RelatedObjectBindingSources', but it is not allowed'
+
+-------------------------------------------------------------
+Version: 1.0.1   - date: 22/jan/2011
+
+    With this version the component supports controls that can present, and optionally edit, both flat data (containing a single set of rows and columns) as well as hierarchical data. An example of that kind of controls is the Infragistics !UltraGrid control. 
+
+-------------------------------------------------------------
 Version: 1.0.0 -  date: 29/dic/2010
 
 First version of !ObjectBindingSource released by Daniel Prado
