@@ -1076,6 +1076,7 @@ Public Class ObjectBindingSource
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] RemoveNestedBindingSources", ID)))
         If _NestedBindingSources IsNot Nothing Then
             For Each objBS In _NestedBindingSources.Keys
+                RemoveHandler objBS.ListChanged, AddressOf ChildList_ListChanged
                 objBS.Dispose()
             Next
             _NestedBindingSources.Clear()
@@ -1097,6 +1098,8 @@ Public Class ObjectBindingSource
         For Each obs In toRemove
             DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] Remove and Dispose NestedBindingSource({1})", ID, obs), 1))
             _NestedBindingSources.Remove(obs)
+
+            RemoveHandler obs.ListChanged, AddressOf ChildList_ListChanged
             obs.Dispose()
         Next
         Return result
@@ -1161,7 +1164,6 @@ Public Class ObjectBindingSource
     ' scenarios. 
 
 
-
     ''' <summary> 
     ''' Clean up any resources being used.
     ''' </summary>
@@ -1169,25 +1171,30 @@ Public Class ObjectBindingSource
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If (disposing AndAlso (Not Me.components Is Nothing)) Then
             CleanUP()
-
-            Dim relatedBindingSourcesField As FieldInfo = _
-                    GetType(BindingSource).GetField("relatedBindingSources", BindingFlags.Instance Or BindingFlags.NonPublic)
-            Dim relatedBindingSources = CType(relatedBindingSourcesField.GetValue(Me), Dictionary(Of String, BindingSource))
-            If relatedBindingSources IsNot Nothing Then
-                For Each key As String In relatedBindingSources.Keys
-                    relatedBindingSources(key).Dispose()
-                Next
-            End If
-
+            FixBindingSourceDispose(Me)
             Me.components.Dispose()
         End If
         MyBase.Dispose(disposing)
-        If disposing Then
-            Dim lastCurrentItemField As FieldInfo = GetType(BindingSource).GetField("lastCurrentItem", BindingFlags.Instance Or BindingFlags.NonPublic)
-            If (lastCurrentItemField IsNot Nothing) Then
-                lastCurrentItemField.SetValue(Me, Nothing)
-            End If
+    End Sub
+
+
+    Private Sub FixBindingSourceDispose(ByVal bs As BindingSource)
+        Dim relatedBindingSourcesField As FieldInfo = _
+                      GetType(BindingSource).GetField("relatedBindingSources", BindingFlags.Instance Or BindingFlags.NonPublic)
+        Dim relatedBindingSources = CType(relatedBindingSourcesField.GetValue(bs), Dictionary(Of String, BindingSource))
+        If relatedBindingSources IsNot Nothing Then
+            For Each key As String In relatedBindingSources.Keys
+                Dim bsRelated = relatedBindingSources(key)
+                FixBindingSourceDispose(bsRelated)
+                bsRelated.Dispose()
+            Next
         End If
+
+        Dim lastCurrentItemField As FieldInfo = GetType(BindingSource).GetField("lastCurrentItem", BindingFlags.Instance Or BindingFlags.NonPublic)
+        If (lastCurrentItemField IsNot Nothing) Then
+            lastCurrentItemField.SetValue(bs, Nothing)
+        End If
+
     End Sub
 
 
