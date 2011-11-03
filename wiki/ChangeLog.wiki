@@ -11,7 +11,7 @@ Fix memory leak problem disposing !BindingSource, as indicated in the following 
 /bindingsource-on-disposing-does-not-reset-lastcurrentitem-field)
 
 Other changes:
-  * Included check on OnListChanged when ListChangedType.ItemAdded to verify that E.NewIndex <= MyBase.Count - 1
+  * Included check on !OnListChanged when !ListChangedType.!ItemAdded to verify that E.!NewIndex <= !MyBase.Count - 1
 
 -------------------------------------------------------------
 Version: 1.0.2   - date: 13/mar/2011
