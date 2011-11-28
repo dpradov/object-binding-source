@@ -1,4 +1,14 @@
 -------------------------------------------------------------
+Version: 1.0.5   - date: 28/nov/2011
+
+Bugfixes:
+
+  * Nested properties offered for child bands (in hierchical data) with the help of the property !RelatedObjectBindingSources worked only with the first child band. Childs of this last band were not including nested properties defined in a related object binding source. '!ListAccesors' property in !GetItemProperties was not used correctly.
+
+Other changes:
+  * !ObjectBindingSource now behaves like normal !BindingSource when connected to a !DataSet or to a !DataTable
+
+-------------------------------------------------------------
 Version: 1.0.3   - date: 03/nov/2011
 
 Fix memory leak problem disposing !BindingSource, as indicated in the following pages:
