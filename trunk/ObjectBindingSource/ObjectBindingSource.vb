@@ -78,6 +78,8 @@ Public Class ObjectBindingSource
 
 #Region "Private Member Variables"
 
+    Private _UseAsNormalBindingSource As Boolean = False
+
     Private _BindableNestedProperties As String()
     Private ReadOnly _propertyDescriptors As New List(Of PropertyDescriptor)
 
@@ -164,6 +166,7 @@ Public Class ObjectBindingSource
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] CreatePropertyDescriptors - Inicio >>>>", ID)))
 
         _createProperties = False
+        If _UseAsNormalBindingSource Then Exit Sub
 
         ' Clear auxiliar structures, including the previous list of property descriptors
         ClearAuxiliarStructures()
@@ -171,6 +174,13 @@ Public Class ObjectBindingSource
         If MyBase.DataSource IsNot Nothing Then
             ' Get the type of object that this bindingsource is bound to            
             _itemType = ListBindingHelper.GetListItemType(MyBase.DataSource, MyBase.DataMember)
+
+            If GetType(DataSet).IsAssignableFrom(MyBase.DataSource.GetType) OrElse GetType(DataTable).IsAssignableFrom(MyBase.DataSource.GetType) Then
+                ' Will be managed as an usual BindingSource
+                _UseAsNormalBindingSource = True
+                Exit Sub
+            End If
+
             _listImplementsIBindingList = GetType(IBindingList).IsInstanceOfType(ListBindingHelper.GetList(MyBase.DataSource, MyBase.DataMember))
 
             If _itemType IsNot GetType(Object) Then
@@ -246,19 +256,29 @@ Public Class ObjectBindingSource
     End Sub
 
     Public Overrides Function GetItemProperties(ByVal listAccessors As PropertyDescriptor()) As PropertyDescriptorCollection
-        If listAccessors Is Nothing Then
-            If _createProperties Then
-                Me.CreatePropertyDescriptors()
-            End If
-            If (_propertyDescriptors.Count > 0) Then
-                Return New PropertyDescriptorCollection(_propertyDescriptors.ToArray)
+        If Not _UseAsNormalBindingSource Then
+
+            If listAccessors Is Nothing OrElse listAccessors.Length = 0 Then
+                If _createProperties Then
+                    Me.CreatePropertyDescriptors()
+                End If
+                If (_propertyDescriptors.Count > 0) Then
+                    Return New PropertyDescriptorCollection(_propertyDescriptors.ToArray)
+                End If
+
+            Else
+                Dim oBS As ObjectBindingSource = GetRelatedObjectBindingSource(listAccessors(0))
+                If oBS IsNot Nothing Then
+                    If listAccessors.Length > 1 Then
+                        Dim newList(listAccessors.Length - 2) As PropertyDescriptor
+                        Array.Copy(listAccessors, 1, newList, 0, newList.Length)
+                        Return oBS.GetItemProperties(newList)
+                    Else
+                        Return oBS.GetItemProperties(Nothing)
+                    End If
+                End If
             End If
 
-        Else
-            Dim oBS As ObjectBindingSource = GetRelatedObjectBindingSource(listAccessors(0))
-            If oBS IsNot Nothing Then
-                Return oBS.GetItemProperties(Nothing)
-            End If
         End If
 
         Return MyBase.GetItemProperties(listAccessors)
@@ -271,6 +291,8 @@ Public Class ObjectBindingSource
     ''' <param name="e">An <see cref="EventArgs"/> containing the event data.</param>
     Protected Overrides Sub OnDataMemberChanged(ByVal e As EventArgs)
         MyBase.OnDataMemberChanged(e)
+        _UseAsNormalBindingSource = False           ' It will be revised again in GetItemProperties
+
         _createProperties = True
         MyBase.ResetBindings(True)
     End Sub
@@ -284,6 +306,8 @@ Public Class ObjectBindingSource
             ClearAuxiliarStructures()
         End If
         MyBase.OnDataSourceChanged(e)
+        _UseAsNormalBindingSource = False           ' It will be revised again in GetItemProperties
+
         _createProperties = True
         MyBase.ResetBindings(True)
     End Sub
@@ -411,6 +435,7 @@ Public Class ObjectBindingSource
 
     Private Sub ClearAuxiliarStructures()
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] ClearStructuresNestedObjects - Inicio >>>>", ID)))
+        If _UseAsNormalBindingSource Then Exit Sub
 
         If _propertyDescriptors IsNot Nothing Then
             For Each prop In _propertyDescriptors
@@ -853,7 +878,7 @@ Public Class ObjectBindingSource
 
 
     Protected Overrides Sub OnListChanged(ByVal E As ListChangedEventArgs)
-        If UsingNestedProperties() Then
+        If Not _UseAsNormalBindingSource AndAlso UsingNestedProperties() Then
             Select Case E.ListChangedType
                 Case ListChangedType.ItemDeleted
                     DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] OnListChanged [ItemDeleted]: {1} - {2}", ID, E.NewIndex, _currentItem)))
@@ -963,15 +988,17 @@ Public Class ObjectBindingSource
     Private Function GetRelatedObjectBindingSource(ByVal prop As PropertyDescriptor) As ObjectBindingSource
         If _RelatedObjectBindingSources Is Nothing Then Return Nothing
 
-        If CType(prop, CustomPropertyDescriptor).PropertyType.GetInterface("IList") IsNot Nothing Then
-
-            Dim typeProperty As Type = prop.PropertyType.GetProperty("Item").PropertyType  ' Otra forma de obtener el tipo de los items de una lista: Type type = list.GetType.GetGenericArguments(0)
-            For Each obs In _RelatedObjectBindingSources
-                Dim obsItemType As Type = ListBindingHelper.GetListItemType(obs.DataSource, obs.DataMember)
-                If obsItemType Is typeProperty Then
-                    Return obs
-                End If
-            Next
+        If prop.PropertyType.GetInterface("IList") IsNot Nothing Then
+            Dim propItem = prop.PropertyType.GetProperty("Item")
+            If propItem IsNot Nothing Then
+                Dim typeProperty As Type = propItem.PropertyType  ' Otra forma de obtener el tipo de los items de una lista: Type type = list.GetType.GetGenericArguments(0)
+                For Each obs In _RelatedObjectBindingSources
+                    Dim obsItemType As Type = ListBindingHelper.GetListItemType(obs.DataSource, obs.DataMember)
+                    If obsItemType Is typeProperty Then
+                        Return obs
+                    End If
+                Next
+            End If
 
         End If
 
