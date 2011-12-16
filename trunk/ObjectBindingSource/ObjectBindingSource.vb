@@ -242,7 +242,10 @@ Public Class ObjectBindingSource
 
         End If
 
-        MyBase.ResetBindings(True)
+        ' The following line is not necessary and also is problematic with comboBox controls.
+        ' An exception could also be thrown in some ocassions at the very beginning (Application.Run(form)) when using ComboBox binded to this component:
+        ' InvalidOperationException that reports a "collection was modified" 
+        'MyBase.ResetBindings(True)  
 
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] CreatePropertyDescriptors - Fin <<<<", ID)))
     End Sub
