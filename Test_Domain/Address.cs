@@ -61,8 +61,7 @@ public class Address : BusinessBase
 
     public override string ToString()
     {
-        return String.Format("<Address:{0}>", _streetAddress);
+        return String.Format("<Address:{0} / {1}>", _city, _streetAddress);
     }
 
 }
-

@@ -27,36 +27,75 @@ partial class MainForm
     private void InitializeComponent()
     {
         this.components = new System.ComponentModel.Container();
-        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand5 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Customer", -1);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn26 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("CustomerId");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn27 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Name");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn28 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BillingAddress");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn29 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Self");
-        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand6 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Product", -1);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn30 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ProductId");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn31 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Name");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn32 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UnitPrice");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn33 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Type");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn34 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Self");
+        Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Order", -1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderNumber", -1, null, 0, Infragistics.Win.UltraWinGrid.SortIndicator.Ascending, false);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderDate");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer", -1, "uddCustomer");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderLines");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_StreetAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_City");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_StreetAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_City");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("OrderLines", 0);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product", -1, "uddProduct");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Quantity");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn13 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Details");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OtherDetails");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_ProductId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_UnitPrice");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand3 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Details", 1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("NotShownProperty");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn20 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_CustomerId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn21 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn22 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_FavoriteProduct_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand4 = new Infragistics.Win.UltraWinGrid.UltraGridBand("OtherDetails", 1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn23 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn24 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("NotShownProperty");
+        Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
+        Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
         Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
-        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand7 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Order", -1);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn35 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderNumber");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn36 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn37 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderDate");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn38 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer", -1, "uddCustomer");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn39 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderLines");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn40 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_Name", -1, null, 0, Infragistics.Win.UltraWinGrid.SortIndicator.Ascending, false);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn41 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_StreetAddress");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn42 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_City");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn43 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_StreetAddress");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn44 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_City");
-        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand8 = new Infragistics.Win.UltraWinGrid.UltraGridBand("OrderLines", 0);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn45 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product", -1, "uddProduct");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn46 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Quantity");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn47 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_ProductId");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn48 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_UnitPrice", -1, null, 0, Infragistics.Win.UltraWinGrid.SortIndicator.Ascending, false);
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn49 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_Name");
-        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn50 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_Type");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand5 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Order", -1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn25 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderNumber", -1, null, 0, Infragistics.Win.UltraWinGrid.SortIndicator.Ascending, false);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn26 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn27 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderDate");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn28 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer", -1, "uddCustomer");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn29 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OrderLines");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn30 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn31 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_StreetAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn32 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Customer_BillingAddress_City");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn33 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_StreetAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn34 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("DeliveryAddress_City");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand6 = new Infragistics.Win.UltraWinGrid.UltraGridBand("OrderLines", 0);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn35 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product", -1, "uddProduct");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn36 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Quantity");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn37 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Details");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn38 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OtherDetails");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn39 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_ProductId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn40 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_UnitPrice");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn41 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Product_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand7 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Details", 1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn42 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn43 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("NotShownProperty");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn44 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_CustomerId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn45 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn46 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy_FavoriteProduct_Name");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand8 = new Infragistics.Win.UltraWinGrid.UltraGridBand("OtherDetails", 1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn47 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("RecomendedBy");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn48 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("NotShownProperty");
         Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
         Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
         Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
@@ -68,66 +107,363 @@ partial class MainForm
         Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
         Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
         Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
-        this.customersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.ordersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.orderlinesBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn5 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn8 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn9 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn11 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn14 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn15 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn17 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn18 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn19 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.productsBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.btnDeleteAll = new System.Windows.Forms.Button();
-        this.btnChange2 = new System.Windows.Forms.Button();
-        this.dataGridViewComboBoxColumn20 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn21 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn22 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn23 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn24 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn25 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.btnChange1 = new System.Windows.Forms.Button();
-        this.dataGridViewComboBoxColumn26 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand9 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Customer", -1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn49 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("CustomerId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn50 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn51 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BillingAddress");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn52 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Age");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn53 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FavoriteProduct");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn54 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Self");
+        Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand10 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Product", -1);
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn55 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ProductId");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn56 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Name");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn57 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UnitPrice");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn58 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Type");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn59 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("OtherProperty");
+        Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn60 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Self");
         this.textBox1 = new System.Windows.Forms.TextBox();
         this.label1 = new System.Windows.Forms.Label();
-        this.dataGridViewComboBoxColumn27 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.btnDeleteCustomer = new System.Windows.Forms.Button();
-        this.uddCustomer = new Infragistics.Win.UltraWinGrid.UltraDropDown();
-        this.uddProduct = new Infragistics.Win.UltraWinGrid.UltraDropDown();
+        this.btnObjectsAlive = new System.Windows.Forms.Button();
+        this.cbAction = new System.Windows.Forms.ComboBox();
+        this.btnGC = new System.Windows.Forms.Button();
+        this.btnChanges = new System.Windows.Forms.Button();
+        this.chkAutoCreateObjects = new System.Windows.Forms.CheckBox();
+        this.chkNotifyChangesChildLists = new System.Windows.Forms.CheckBox();
+        this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+        this.ChkConsiderChildsOnlyInCurrent = new System.Windows.Forms.CheckBox();
+        this.label2 = new System.Windows.Forms.Label();
         this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
-        this.groupBox1 = new System.Windows.Forms.GroupBox();
-        this.btnChange3 = new System.Windows.Forms.Button();
-        ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
+        this.ordersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.orderlinesBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.detailOrderLinesBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.ChkConsiderChildsOnlyInCurrent2 = new System.Windows.Forms.CheckBox();
+        this.label3 = new System.Windows.Forms.Label();
+        this.chkAutoCreateObjects2 = new System.Windows.Forms.CheckBox();
+        this.ultraGrid2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+        this.ordersBindingSource_2 = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.chkNotifyChangesChildLists2 = new System.Windows.Forms.CheckBox();
+        this.chkConsiderOnlyDetails = new System.Windows.Forms.CheckBox();
+        this.btnShowOBS = new System.Windows.Forms.Button();
+        this.uddCustomer = new Infragistics.Win.UltraWinGrid.UltraDropDown();
+        this.customersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.uddProduct = new Infragistics.Win.UltraWinGrid.UltraDropDown();
+        this.productsBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.splitContainer1.Panel1.SuspendLayout();
+        this.splitContainer1.Panel2.SuspendLayout();
+        this.splitContainer1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.orderlinesBindingSource)).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.detailOrderLinesBindingSource)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource_2)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.uddCustomer)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.uddProduct)).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
-        this.groupBox1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
         this.SuspendLayout();
         // 
-        // customersBindingSource
+        // textBox1
         // 
-        this.customersBindingSource.AutoCreateObjects = false;
-        this.customersBindingSource.BindableNestedProperties = new string[0];
-        this.customersBindingSource.DataSource = typeof(Customer);
-        this.customersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
-        this.customersBindingSource.NotifyListChangesFromNestedBindingSources = false;
-        this.customersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        this.textBox1.Location = new System.Drawing.Point(114, 12);
+        this.textBox1.Name = "textBox1";
+        this.textBox1.Size = new System.Drawing.Size(31, 20);
+        this.textBox1.TabIndex = 7;
+        this.textBox1.Validated += new System.EventHandler(this.textBox1_Validated);
+        // 
+        // label1
+        // 
+        this.label1.AutoSize = true;
+        this.label1.Location = new System.Drawing.Point(16, 15);
+        this.label1.Name = "label1";
+        this.label1.Size = new System.Drawing.Size(97, 13);
+        this.label1.TabIndex = 8;
+        this.label1.Text = "Max. Debug Level:";
+        // 
+        // btnObjectsAlive
+        // 
+        this.btnObjectsAlive.Location = new System.Drawing.Point(153, 10);
+        this.btnObjectsAlive.Name = "btnObjectsAlive";
+        this.btnObjectsAlive.Size = new System.Drawing.Size(108, 23);
+        this.btnObjectsAlive.TabIndex = 20;
+        this.btnObjectsAlive.Text = "Show Objects Alive";
+        this.btnObjectsAlive.UseVisualStyleBackColor = true;
+        this.btnObjectsAlive.Click += new System.EventHandler(this.btnObjectsAlive_Click);
+        // 
+        // cbAction
+        // 
+        this.cbAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+        this.cbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        this.cbAction.FormattingEnabled = true;
+        this.cbAction.Items.AddRange(new object[] {
+            " 0: MOD \"Keyboard\"",
+            " 1: MOD \"Jane Wilson\" & \"Bill Smith\" ",
+            " 2: MOD \"Keyboard\" & \"Mouse\"",
+            " 3: INC OrderDate: Order-1 & Order-2",
+            " 4: Order-1.OrderLines[1].Product <==  Order-1.OrderLines[0].Product",
+            " 5: INC OrderLines[0].Quantity:  Order-1 & Order-2",
+            " 6: INC Customer.Age  <Jane Wilson> & <Bill Smith>",
+            "20: MOD Orders[0].OrderLines[0].Details[0].NotShownProperty",
+            " 7: INC Product.UnitPrice: <Keyboard> & <Mouse>",
+            " 8: MOD <Keyboard>.ChangeMultiple (Property=Nothing)",
+            "----------",
+            "13: Add New Order (4: <Jane Wilson>)",
+            "14: Remove New Order (4: <Jane Wilson>)",
+            "-----",
+            "15: MOD ordersBindingSource.BindableNestedProperties: A",
+            "16: MOD ordersBindingSource.BindableNestedProperties: B",
+            "17: MOD orderlinesBindingSource.BindableNestedProperties: A",
+            "--------",
+            "23: MOD ordersBindingSource.BindableNestedProperties: C",
+            "-----------------",
+            "21: Orders[0].OrderLines = Orders[0].OrderLines",
+            "22: Orders[0].OrderLines = Orders[1].OrderLines",
+            "-----------",
+            "18: Refresh ultraGrid1.Rows[0].ChildBands[0].Rows",
+            "19: Refresh ultraGrid1.Rows[1].ChildBands[0].Rows",
+            "-----------------",
+            " 9: Remove <Samantha Brown>",
+            "10: Remove <LapTop>",
+            "11: Delete All",
+            "12: BindingSourceS.Dispose"});
+        this.cbAction.Location = new System.Drawing.Point(472, 11);
+        this.cbAction.Name = "cbAction";
+        this.cbAction.Size = new System.Drawing.Size(444, 21);
+        this.cbAction.TabIndex = 18;
+        // 
+        // btnGC
+        // 
+        this.btnGC.Location = new System.Drawing.Point(381, 9);
+        this.btnGC.Name = "btnGC";
+        this.btnGC.Size = new System.Drawing.Size(75, 23);
+        this.btnGC.TabIndex = 17;
+        this.btnGC.Text = "GC.Collect";
+        this.btnGC.UseVisualStyleBackColor = true;
+        this.btnGC.Click += new System.EventHandler(this.btnGC_Click);
+        // 
+        // btnChanges
+        // 
+        this.btnChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+        this.btnChanges.Location = new System.Drawing.Point(925, 9);
+        this.btnChanges.Name = "btnChanges";
+        this.btnChanges.Size = new System.Drawing.Size(55, 23);
+        this.btnChanges.TabIndex = 16;
+        this.btnChanges.Text = "Apply";
+        this.btnChanges.UseVisualStyleBackColor = true;
+        this.btnChanges.Click += new System.EventHandler(this.btnChanges_Click);
+        // 
+        // chkAutoCreateObjects
+        // 
+        this.chkAutoCreateObjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkAutoCreateObjects.AutoSize = true;
+        this.chkAutoCreateObjects.Checked = true;
+        this.chkAutoCreateObjects.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkAutoCreateObjects.Location = new System.Drawing.Point(9, 224);
+        this.chkAutoCreateObjects.Name = "chkAutoCreateObjects";
+        this.chkAutoCreateObjects.Size = new System.Drawing.Size(115, 17);
+        this.chkAutoCreateObjects.TabIndex = 21;
+        this.chkAutoCreateObjects.Text = "AutoCreateObjects";
+        this.chkAutoCreateObjects.UseVisualStyleBackColor = true;
+        this.chkAutoCreateObjects.CheckedChanged += new System.EventHandler(this.chkAutoCreateObjects_CheckedChanged);
+        // 
+        // chkNotifyChangesChildLists
+        // 
+        this.chkNotifyChangesChildLists.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkNotifyChangesChildLists.AutoSize = true;
+        this.chkNotifyChangesChildLists.Checked = true;
+        this.chkNotifyChangesChildLists.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkNotifyChangesChildLists.Location = new System.Drawing.Point(155, 224);
+        this.chkNotifyChangesChildLists.Name = "chkNotifyChangesChildLists";
+        this.chkNotifyChangesChildLists.Size = new System.Drawing.Size(139, 17);
+        this.chkNotifyChangesChildLists.TabIndex = 22;
+        this.chkNotifyChangesChildLists.Text = "NotifyChangesChildLists";
+        this.chkNotifyChangesChildLists.UseVisualStyleBackColor = true;
+        this.chkNotifyChangesChildLists.CheckedChanged += new System.EventHandler(this.chkNotifyChangesChildLists_CheckedChanged);
+        // 
+        // splitContainer1
+        // 
+        this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.splitContainer1.Location = new System.Drawing.Point(12, 38);
+        this.splitContainer1.Name = "splitContainer1";
+        this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+        // 
+        // splitContainer1.Panel1
+        // 
+        this.splitContainer1.Panel1.Controls.Add(this.ChkConsiderChildsOnlyInCurrent);
+        this.splitContainer1.Panel1.Controls.Add(this.label2);
+        this.splitContainer1.Panel1.Controls.Add(this.ultraGrid1);
+        this.splitContainer1.Panel1.Controls.Add(this.chkAutoCreateObjects);
+        this.splitContainer1.Panel1.Controls.Add(this.chkNotifyChangesChildLists);
+        // 
+        // splitContainer1.Panel2
+        // 
+        this.splitContainer1.Panel2.Controls.Add(this.ChkConsiderChildsOnlyInCurrent2);
+        this.splitContainer1.Panel2.Controls.Add(this.label3);
+        this.splitContainer1.Panel2.Controls.Add(this.chkAutoCreateObjects2);
+        this.splitContainer1.Panel2.Controls.Add(this.ultraGrid2);
+        this.splitContainer1.Panel2.Controls.Add(this.chkNotifyChangesChildLists2);
+        this.splitContainer1.Size = new System.Drawing.Size(968, 460);
+        this.splitContainer1.SplitterDistance = 245;
+        this.splitContainer1.TabIndex = 23;
+        // 
+        // ChkConsiderChildsOnlyInCurrent
+        // 
+        this.ChkConsiderChildsOnlyInCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.ChkConsiderChildsOnlyInCurrent.AutoSize = true;
+        this.ChkConsiderChildsOnlyInCurrent.Checked = true;
+        this.ChkConsiderChildsOnlyInCurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.ChkConsiderChildsOnlyInCurrent.Location = new System.Drawing.Point(310, 224);
+        this.ChkConsiderChildsOnlyInCurrent.Name = "ChkConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent.Size = new System.Drawing.Size(159, 17);
+        this.ChkConsiderChildsOnlyInCurrent.TabIndex = 24;
+        this.ChkConsiderChildsOnlyInCurrent.Text = "ConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent.UseVisualStyleBackColor = true;
+        this.ChkConsiderChildsOnlyInCurrent.CheckedChanged += new System.EventHandler(this.ChkConsiderChildsOnlyInCurrent_CheckedChanged);
+        // 
+        // label2
+        // 
+        this.label2.AutoSize = true;
+        this.label2.Location = new System.Drawing.Point(6, 7);
+        this.label2.Name = "label2";
+        this.label2.Size = new System.Drawing.Size(124, 13);
+        this.label2.TabIndex = 23;
+        this.label2.Text = "DataSource: List<Order>";
+        // 
+        // ultraGrid1
+        // 
+        this.ultraGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.ultraGrid1.DataSource = this.ordersBindingSource;
+        appearance1.BackColor = System.Drawing.SystemColors.Window;
+        appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+        this.ultraGrid1.DisplayLayout.Appearance = appearance1;
+        ultraGridColumn1.Header.VisiblePosition = 0;
+        ultraGridColumn2.Header.VisiblePosition = 1;
+        ultraGridColumn3.Header.VisiblePosition = 2;
+        ultraGridColumn4.Header.VisiblePosition = 3;
+        ultraGridColumn4.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
+        ultraGridColumn5.Header.VisiblePosition = 9;
+        ultraGridColumn6.Header.Caption = "Customer Name";
+        ultraGridColumn6.Header.VisiblePosition = 4;
+        ultraGridColumn7.Header.Caption = "Customer BillingAddress StreetAddress";
+        ultraGridColumn7.Header.VisiblePosition = 5;
+        ultraGridColumn8.Header.Caption = "Customer BillingAddress City";
+        ultraGridColumn8.Header.VisiblePosition = 6;
+        ultraGridColumn9.Header.Caption = "DeliveryAddress StreetAddress";
+        ultraGridColumn9.Header.VisiblePosition = 7;
+        ultraGridColumn10.Header.Caption = "DeliveryAddress City";
+        ultraGridColumn10.Header.VisiblePosition = 8;
+        ultraGridBand1.Columns.AddRange(new object[] {
+            ultraGridColumn1,
+            ultraGridColumn2,
+            ultraGridColumn3,
+            ultraGridColumn4,
+            ultraGridColumn5,
+            ultraGridColumn6,
+            ultraGridColumn7,
+            ultraGridColumn8,
+            ultraGridColumn9,
+            ultraGridColumn10});
+        ultraGridColumn11.Header.VisiblePosition = 0;
+        ultraGridColumn11.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
+        ultraGridColumn12.Header.VisiblePosition = 1;
+        ultraGridColumn13.Header.VisiblePosition = 6;
+        ultraGridColumn14.Header.VisiblePosition = 5;
+        ultraGridColumn15.Header.VisiblePosition = 2;
+        ultraGridColumn16.Header.VisiblePosition = 3;
+        ultraGridColumn17.Header.VisiblePosition = 4;
+        ultraGridBand2.Columns.AddRange(new object[] {
+            ultraGridColumn11,
+            ultraGridColumn12,
+            ultraGridColumn13,
+            ultraGridColumn14,
+            ultraGridColumn15,
+            ultraGridColumn16,
+            ultraGridColumn17});
+        ultraGridColumn18.Header.VisiblePosition = 0;
+        ultraGridColumn18.Hidden = true;
+        ultraGridColumn19.Header.VisiblePosition = 1;
+        ultraGridColumn19.Hidden = true;
+        ultraGridColumn20.Header.VisiblePosition = 2;
+        ultraGridColumn21.Header.VisiblePosition = 3;
+        ultraGridColumn22.Header.VisiblePosition = 4;
+        ultraGridBand3.Columns.AddRange(new object[] {
+            ultraGridColumn18,
+            ultraGridColumn19,
+            ultraGridColumn20,
+            ultraGridColumn21,
+            ultraGridColumn22});
+        ultraGridColumn23.Header.VisiblePosition = 0;
+        ultraGridColumn24.Header.VisiblePosition = 1;
+        ultraGridColumn24.Hidden = true;
+        ultraGridBand4.Columns.AddRange(new object[] {
+            ultraGridColumn23,
+            ultraGridColumn24});
+        ultraGridBand4.Hidden = true;
+        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
+        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
+        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand3);
+        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand4);
+        this.ultraGrid1.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+        this.ultraGrid1.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+        appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+        appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
+        appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+        appearance2.BorderColor = System.Drawing.SystemColors.Window;
+        this.ultraGrid1.DisplayLayout.GroupByBox.Appearance = appearance2;
+        appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
+        this.ultraGrid1.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
+        this.ultraGrid1.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+        appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+        appearance4.BackColor2 = System.Drawing.SystemColors.Control;
+        appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+        appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
+        this.ultraGrid1.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
+        this.ultraGrid1.DisplayLayout.MaxColScrollRegions = 1;
+        this.ultraGrid1.DisplayLayout.MaxRowScrollRegions = 1;
+        appearance5.BackColor = System.Drawing.SystemColors.Window;
+        appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
+        this.ultraGrid1.DisplayLayout.Override.ActiveCellAppearance = appearance5;
+        appearance6.BackColor = System.Drawing.SystemColors.Highlight;
+        appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
+        this.ultraGrid1.DisplayLayout.Override.ActiveRowAppearance = appearance6;
+        this.ultraGrid1.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+        this.ultraGrid1.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+        appearance7.BackColor = System.Drawing.SystemColors.Window;
+        this.ultraGrid1.DisplayLayout.Override.CardAreaAppearance = appearance7;
+        appearance8.BorderColor = System.Drawing.Color.Silver;
+        appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+        this.ultraGrid1.DisplayLayout.Override.CellAppearance = appearance8;
+        this.ultraGrid1.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+        this.ultraGrid1.DisplayLayout.Override.CellPadding = 0;
+        appearance9.BackColor = System.Drawing.SystemColors.Control;
+        appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
+        appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+        appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+        appearance9.BorderColor = System.Drawing.SystemColors.Window;
+        this.ultraGrid1.DisplayLayout.Override.GroupByRowAppearance = appearance9;
+        appearance10.TextHAlignAsString = "Left";
+        this.ultraGrid1.DisplayLayout.Override.HeaderAppearance = appearance10;
+        this.ultraGrid1.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+        this.ultraGrid1.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+        appearance11.BackColor = System.Drawing.SystemColors.Window;
+        appearance11.BorderColor = System.Drawing.Color.Silver;
+        this.ultraGrid1.DisplayLayout.Override.RowAppearance = appearance11;
+        this.ultraGrid1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
+        appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
+        this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
+        this.ultraGrid1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+        this.ultraGrid1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+        this.ultraGrid1.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+        this.ultraGrid1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.ultraGrid1.Location = new System.Drawing.Point(0, 23);
+        this.ultraGrid1.Name = "ultraGrid1";
+        this.ultraGrid1.Size = new System.Drawing.Size(968, 196);
+        this.ultraGrid1.TabIndex = 14;
+        this.ultraGrid1.Text = "ultraGrid1";
         // 
         // ordersBindingSource
         // 
@@ -139,13 +475,15 @@ partial class MainForm
         "Customer.BillingAddress.City",
         "DeliveryAddress.StreetAddress",
         "DeliveryAddress.City"};
+        this.ordersBindingSource.ChildListsToConsider = null;
+        this.ordersBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.ordersBindingSource.DataSource = typeof(Order);
         this.ordersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = true;
-        this.ordersBindingSource.NotifyListChangesFromNestedBindingSources = false;
         this.ordersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[] {
         this.orderlinesBindingSource};
         this.ordersBindingSource.ListChangedOnChildList += new UI.ObjectBindingSource.ObjectBindingSource.ListChangedOnChildListEventHandler(this.ordersBindingSource_ListChangedOnChildList);
         this.ordersBindingSource.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_CreatingObject);
+        this.ordersBindingSource.NestedError += new UI.ObjectBindingSource.ObjectBindingSource.NestedErrorEventHandler(this.ordersBindingSource_NestedError);
         // 
         // orderlinesBindingSource
         // 
@@ -154,476 +492,326 @@ partial class MainForm
         this.orderlinesBindingSource.BindableNestedProperties = new string[] {
         "Product.ProductId",
         "Product.UnitPrice",
-        "Product.Name",
-        "Product.Type"};
+        "Product.Name"};
+        this.orderlinesBindingSource.ChildListsToConsider = new string[] {
+        "Details"};
+        this.orderlinesBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.orderlinesBindingSource.DataSource = typeof(OrderLine);
-        this.orderlinesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
-        this.orderlinesBindingSource.NotifyListChangesFromNestedBindingSources = false;
-        this.orderlinesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
-        // 
-        // dataGridViewComboBoxColumn1
-        // 
-        this.dataGridViewComboBoxColumn1.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn1.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-        this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn2
-        // 
-        this.dataGridViewComboBoxColumn2.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn2.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
-        this.dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn3
-        // 
-        this.dataGridViewComboBoxColumn3.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn3.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn3.Name = "dataGridViewComboBoxColumn3";
-        this.dataGridViewComboBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn4
-        // 
-        this.dataGridViewComboBoxColumn4.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn4.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn4.Name = "dataGridViewComboBoxColumn4";
-        this.dataGridViewComboBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn5
-        // 
-        this.dataGridViewComboBoxColumn5.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn5.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn5.Name = "dataGridViewComboBoxColumn5";
-        this.dataGridViewComboBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn6
-        // 
-        this.dataGridViewComboBoxColumn6.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn6.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn6.Name = "dataGridViewComboBoxColumn6";
-        this.dataGridViewComboBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn7
-        // 
-        this.dataGridViewComboBoxColumn7.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn7.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn7.Name = "dataGridViewComboBoxColumn7";
-        this.dataGridViewComboBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn8
-        // 
-        this.dataGridViewComboBoxColumn8.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn8.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn8.Name = "dataGridViewComboBoxColumn8";
-        this.dataGridViewComboBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn9
-        // 
-        this.dataGridViewComboBoxColumn9.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn9.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn9.Name = "dataGridViewComboBoxColumn9";
-        this.dataGridViewComboBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn10
-        // 
-        this.dataGridViewComboBoxColumn10.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn10.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn10.Name = "dataGridViewComboBoxColumn10";
-        this.dataGridViewComboBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn11
-        // 
-        this.dataGridViewComboBoxColumn11.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn11.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn11.Name = "dataGridViewComboBoxColumn11";
-        this.dataGridViewComboBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn12
-        // 
-        this.dataGridViewComboBoxColumn12.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn12.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn12.Name = "dataGridViewComboBoxColumn12";
-        this.dataGridViewComboBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn13
-        // 
-        this.dataGridViewComboBoxColumn13.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn13.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn13.Name = "dataGridViewComboBoxColumn13";
-        this.dataGridViewComboBoxColumn13.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn14
-        // 
-        this.dataGridViewComboBoxColumn14.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn14.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn14.Name = "dataGridViewComboBoxColumn14";
-        this.dataGridViewComboBoxColumn14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn15
-        // 
-        this.dataGridViewComboBoxColumn15.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn15.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn15.Name = "dataGridViewComboBoxColumn15";
-        this.dataGridViewComboBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn16
-        // 
-        this.dataGridViewComboBoxColumn16.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn16.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn16.Name = "dataGridViewComboBoxColumn16";
-        this.dataGridViewComboBoxColumn16.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn17
-        // 
-        this.dataGridViewComboBoxColumn17.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn17.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn17.Name = "dataGridViewComboBoxColumn17";
-        this.dataGridViewComboBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn18
-        // 
-        this.dataGridViewComboBoxColumn18.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn18.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn18.Name = "dataGridViewComboBoxColumn18";
-        this.dataGridViewComboBoxColumn18.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn19
-        // 
-        this.dataGridViewComboBoxColumn19.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn19.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn19.Name = "dataGridViewComboBoxColumn19";
-        this.dataGridViewComboBoxColumn19.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // productsBindingSource
-        // 
-        this.productsBindingSource.AutoCreateObjects = false;
-        this.productsBindingSource.BindableNestedProperties = new string[0];
-        this.productsBindingSource.DataSource = typeof(Product);
-        this.productsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
-        this.productsBindingSource.NotifyListChangesFromNestedBindingSources = false;
-        this.productsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
-        // 
-        // btnDeleteAll
-        // 
-        this.btnDeleteAll.Location = new System.Drawing.Point(18, 12);
-        this.btnDeleteAll.Name = "btnDeleteAll";
-        this.btnDeleteAll.Size = new System.Drawing.Size(108, 23);
-        this.btnDeleteAll.TabIndex = 5;
-        this.btnDeleteAll.Text = "Delete All";
-        this.btnDeleteAll.UseVisualStyleBackColor = true;
-        this.btnDeleteAll.Click += new System.EventHandler(this.DeleteAll_Click);
-        // 
-        // btnChange2
-        // 
-        this.btnChange2.Location = new System.Drawing.Point(800, 12);
-        this.btnChange2.Name = "btnChange2";
-        this.btnChange2.Size = new System.Drawing.Size(83, 23);
-        this.btnChange2.TabIndex = 4;
-        this.btnChange2.Text = "Change 2";
-        this.btnChange2.UseVisualStyleBackColor = true;
-        this.btnChange2.Click += new System.EventHandler(this.btnChange2_Click);
-        // 
-        // dataGridViewComboBoxColumn20
-        // 
-        this.dataGridViewComboBoxColumn20.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn20.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn20.Name = "dataGridViewComboBoxColumn20";
-        this.dataGridViewComboBoxColumn20.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn21
-        // 
-        this.dataGridViewComboBoxColumn21.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn21.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn21.Name = "dataGridViewComboBoxColumn21";
-        this.dataGridViewComboBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn22
-        // 
-        this.dataGridViewComboBoxColumn22.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn22.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn22.Name = "dataGridViewComboBoxColumn22";
-        this.dataGridViewComboBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn23
-        // 
-        this.dataGridViewComboBoxColumn23.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn23.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn23.Name = "dataGridViewComboBoxColumn23";
-        this.dataGridViewComboBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn23.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn24
-        // 
-        this.dataGridViewComboBoxColumn24.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn24.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn24.Name = "dataGridViewComboBoxColumn24";
-        this.dataGridViewComboBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn24.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn25
-        // 
-        this.dataGridViewComboBoxColumn25.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn25.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn25.Name = "dataGridViewComboBoxColumn25";
-        this.dataGridViewComboBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // btnChange1
-        // 
-        this.btnChange1.Location = new System.Drawing.Point(713, 12);
-        this.btnChange1.Name = "btnChange1";
-        this.btnChange1.Size = new System.Drawing.Size(79, 23);
-        this.btnChange1.TabIndex = 6;
-        this.btnChange1.Text = "Change 1";
-        this.btnChange1.UseVisualStyleBackColor = true;
-        this.btnChange1.Click += new System.EventHandler(this.btnChange1_Click);
-        // 
-        // dataGridViewComboBoxColumn26
-        // 
-        this.dataGridViewComboBoxColumn26.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn26.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn26.Name = "dataGridViewComboBoxColumn26";
-        this.dataGridViewComboBoxColumn26.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn26.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // textBox1
-        // 
-        this.textBox1.Location = new System.Drawing.Point(343, 14);
-        this.textBox1.Name = "textBox1";
-        this.textBox1.Size = new System.Drawing.Size(31, 20);
-        this.textBox1.TabIndex = 7;
-        this.textBox1.Validated += new System.EventHandler(this.textBox1_Validated);
-        // 
-        // label1
-        // 
-        this.label1.AutoSize = true;
-        this.label1.Location = new System.Drawing.Point(245, 17);
-        this.label1.Name = "label1";
-        this.label1.Size = new System.Drawing.Size(97, 13);
-        this.label1.TabIndex = 8;
-        this.label1.Text = "Max. Debug Level:";
-        // 
-        // dataGridViewComboBoxColumn27
-        // 
-        this.dataGridViewComboBoxColumn27.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn27.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn27.Name = "dataGridViewComboBoxColumn27";
-        this.dataGridViewComboBoxColumn27.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn27.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // btnDeleteCustomer
-        // 
-        this.btnDeleteCustomer.Location = new System.Drawing.Point(132, 11);
-        this.btnDeleteCustomer.Name = "btnDeleteCustomer";
-        this.btnDeleteCustomer.Size = new System.Drawing.Size(108, 23);
-        this.btnDeleteCustomer.TabIndex = 9;
-        this.btnDeleteCustomer.Text = "Delete Customer[0]";
-        this.btnDeleteCustomer.UseVisualStyleBackColor = true;
-        this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
-        // 
-        // uddCustomer
-        // 
-        this.uddCustomer.DataSource = this.customersBindingSource;
-        ultraGridColumn26.Header.VisiblePosition = 0;
-        ultraGridColumn27.Header.VisiblePosition = 1;
-        ultraGridColumn28.Header.VisiblePosition = 2;
-        ultraGridColumn28.Hidden = true;
-        ultraGridColumn29.Header.VisiblePosition = 3;
-        ultraGridColumn29.Hidden = true;
+        this.orderlinesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = true;
+        this.orderlinesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[] {
+        this.detailOrderLinesBindingSource};
+        // 
+        // detailOrderLinesBindingSource
+        // 
+        this.detailOrderLinesBindingSource.AllowNew = false;
+        this.detailOrderLinesBindingSource.AutoCreateObjects = false;
+        this.detailOrderLinesBindingSource.BindableNestedProperties = new string[] {
+        "RecomendedBy.CustomerId",
+        "RecomendedBy.Name",
+        "RecomendedBy.FavoriteProduct.Name"};
+        this.detailOrderLinesBindingSource.ChildListsToConsider = null;
+        this.detailOrderLinesBindingSource.ConsiderChildsOnlyInCurrent = true;
+        this.detailOrderLinesBindingSource.DataSource = typeof(DetailOrderLine);
+        this.detailOrderLinesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.detailOrderLinesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        // 
+        // ChkConsiderChildsOnlyInCurrent2
+        // 
+        this.ChkConsiderChildsOnlyInCurrent2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.ChkConsiderChildsOnlyInCurrent2.AutoSize = true;
+        this.ChkConsiderChildsOnlyInCurrent2.Checked = true;
+        this.ChkConsiderChildsOnlyInCurrent2.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.ChkConsiderChildsOnlyInCurrent2.Location = new System.Drawing.Point(310, 184);
+        this.ChkConsiderChildsOnlyInCurrent2.Name = "ChkConsiderChildsOnlyInCurrent2";
+        this.ChkConsiderChildsOnlyInCurrent2.Size = new System.Drawing.Size(159, 17);
+        this.ChkConsiderChildsOnlyInCurrent2.TabIndex = 26;
+        this.ChkConsiderChildsOnlyInCurrent2.Text = "ConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent2.UseVisualStyleBackColor = true;
+        this.ChkConsiderChildsOnlyInCurrent2.CheckedChanged += new System.EventHandler(this.ChkConsiderChildsOnlyInCurrent2_CheckedChanged);
+        // 
+        // label3
+        // 
+        this.label3.AutoSize = true;
+        this.label3.Location = new System.Drawing.Point(4, 8);
+        this.label3.Name = "label3";
+        this.label3.Size = new System.Drawing.Size(159, 13);
+        this.label3.TabIndex = 25;
+        this.label3.Text = "DataSource: BindingList<Order>";
+        // 
+        // chkAutoCreateObjects2
+        // 
+        this.chkAutoCreateObjects2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkAutoCreateObjects2.AutoSize = true;
+        this.chkAutoCreateObjects2.Checked = true;
+        this.chkAutoCreateObjects2.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkAutoCreateObjects2.Location = new System.Drawing.Point(8, 184);
+        this.chkAutoCreateObjects2.Name = "chkAutoCreateObjects2";
+        this.chkAutoCreateObjects2.Size = new System.Drawing.Size(115, 17);
+        this.chkAutoCreateObjects2.TabIndex = 23;
+        this.chkAutoCreateObjects2.Text = "AutoCreateObjects";
+        this.chkAutoCreateObjects2.UseVisualStyleBackColor = true;
+        this.chkAutoCreateObjects2.CheckedChanged += new System.EventHandler(this.chkAutoCreateObjects2_CheckedChanged);
+        // 
+        // ultraGrid2
+        // 
+        this.ultraGrid2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
+        this.ultraGrid2.DataSource = this.ordersBindingSource_2;
+        appearance13.BackColor = System.Drawing.SystemColors.Window;
+        appearance13.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+        this.ultraGrid2.DisplayLayout.Appearance = appearance13;
+        ultraGridColumn25.Header.VisiblePosition = 0;
+        ultraGridColumn26.Header.VisiblePosition = 1;
+        ultraGridColumn27.Header.VisiblePosition = 2;
+        ultraGridColumn28.Header.VisiblePosition = 3;
+        ultraGridColumn28.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
+        ultraGridColumn29.Header.VisiblePosition = 9;
+        ultraGridColumn30.Header.Caption = "Customer Name";
+        ultraGridColumn30.Header.VisiblePosition = 4;
+        ultraGridColumn31.Header.Caption = "Customer BillingAddress StreetAddress";
+        ultraGridColumn31.Header.VisiblePosition = 5;
+        ultraGridColumn32.Header.Caption = "Customer BillingAddress City";
+        ultraGridColumn32.Header.VisiblePosition = 6;
+        ultraGridColumn33.Header.Caption = "DeliveryAddress StreetAddress";
+        ultraGridColumn33.Header.VisiblePosition = 7;
+        ultraGridColumn34.Header.Caption = "DeliveryAddress City";
+        ultraGridColumn34.Header.VisiblePosition = 8;
         ultraGridBand5.Columns.AddRange(new object[] {
+            ultraGridColumn25,
             ultraGridColumn26,
             ultraGridColumn27,
             ultraGridColumn28,
-            ultraGridColumn29});
-        this.uddCustomer.DisplayLayout.BandsSerializer.Add(ultraGridBand5);
-        this.uddCustomer.DisplayMember = "Name";
-        this.uddCustomer.Location = new System.Drawing.Point(389, 15);
-        this.uddCustomer.Name = "uddCustomer";
-        this.uddCustomer.Size = new System.Drawing.Size(128, 24);
-        this.uddCustomer.TabIndex = 11;
-        this.uddCustomer.ValueMember = "Self";
-        this.uddCustomer.Visible = false;
-        // 
-        // uddProduct
-        // 
-        this.uddProduct.DataSource = this.productsBindingSource;
-        ultraGridColumn30.Header.VisiblePosition = 0;
-        ultraGridColumn31.Header.VisiblePosition = 1;
-        ultraGridColumn32.Header.VisiblePosition = 2;
-        ultraGridColumn32.Hidden = true;
-        ultraGridColumn33.Header.VisiblePosition = 3;
-        ultraGridColumn33.Hidden = true;
-        ultraGridColumn34.Header.VisiblePosition = 4;
-        ultraGridColumn34.Hidden = true;
-        ultraGridBand6.Columns.AddRange(new object[] {
+            ultraGridColumn29,
             ultraGridColumn30,
             ultraGridColumn31,
             ultraGridColumn32,
             ultraGridColumn33,
             ultraGridColumn34});
-        this.uddProduct.DisplayLayout.BandsSerializer.Add(ultraGridBand6);
-        this.uddProduct.DisplayMember = "Name";
-        this.uddProduct.Location = new System.Drawing.Point(523, 14);
-        this.uddProduct.Name = "uddProduct";
-        this.uddProduct.Size = new System.Drawing.Size(128, 24);
-        this.uddProduct.TabIndex = 12;
-        this.uddProduct.ValueMember = "Self";
-        this.uddProduct.Visible = false;
-        // 
-        // ultraGrid1
-        // 
-        this.ultraGrid1.DataSource = this.ordersBindingSource;
-        appearance13.BackColor = System.Drawing.SystemColors.Window;
-        appearance13.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-        this.ultraGrid1.DisplayLayout.Appearance = appearance13;
         ultraGridColumn35.Header.VisiblePosition = 0;
+        ultraGridColumn35.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
         ultraGridColumn36.Header.VisiblePosition = 1;
-        ultraGridColumn37.Header.VisiblePosition = 2;
-        ultraGridColumn38.Header.VisiblePosition = 3;
-        ultraGridColumn38.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
-        ultraGridColumn39.Header.VisiblePosition = 4;
-        ultraGridColumn40.Header.Caption = "Customer Name";
-        ultraGridColumn40.Header.VisiblePosition = 5;
-        ultraGridColumn41.Header.Caption = "Customer BillingAddress StreetAddress";
-        ultraGridColumn41.Header.VisiblePosition = 6;
-        ultraGridColumn42.Header.Caption = "Customer BillingAddress City";
-        ultraGridColumn42.Header.VisiblePosition = 7;
-        ultraGridColumn43.Header.Caption = "DeliveryAddress StreetAddress";
-        ultraGridColumn43.Header.VisiblePosition = 8;
-        ultraGridColumn44.Header.Caption = "DeliveryAddress City";
-        ultraGridColumn44.Header.VisiblePosition = 9;
-        ultraGridBand7.Columns.AddRange(new object[] {
+        ultraGridColumn37.Header.VisiblePosition = 6;
+        ultraGridColumn38.Header.VisiblePosition = 5;
+        ultraGridColumn39.Header.VisiblePosition = 2;
+        ultraGridColumn40.Header.VisiblePosition = 3;
+        ultraGridColumn41.Header.VisiblePosition = 4;
+        ultraGridBand6.Columns.AddRange(new object[] {
             ultraGridColumn35,
             ultraGridColumn36,
             ultraGridColumn37,
             ultraGridColumn38,
             ultraGridColumn39,
             ultraGridColumn40,
-            ultraGridColumn41,
+            ultraGridColumn41});
+        ultraGridColumn42.Header.VisiblePosition = 0;
+        ultraGridColumn42.Hidden = true;
+        ultraGridColumn43.Header.VisiblePosition = 1;
+        ultraGridColumn44.Header.VisiblePosition = 2;
+        ultraGridColumn45.Header.VisiblePosition = 3;
+        ultraGridColumn46.Header.VisiblePosition = 4;
+        ultraGridBand7.Columns.AddRange(new object[] {
             ultraGridColumn42,
             ultraGridColumn43,
-            ultraGridColumn44});
-        ultraGridColumn45.Header.VisiblePosition = 0;
-        ultraGridColumn45.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
-        ultraGridColumn46.Header.VisiblePosition = 1;
-        ultraGridColumn47.Header.Caption = "ProductId";
-        ultraGridColumn47.Header.VisiblePosition = 2;
-        ultraGridColumn48.Header.Caption = "UnitPrice";
-        ultraGridColumn48.Header.VisiblePosition = 3;
-        ultraGridColumn49.Header.Caption = "Product Name";
-        ultraGridColumn49.Header.VisiblePosition = 4;
-        ultraGridColumn50.Header.Caption = "Product Type";
-        ultraGridColumn50.Header.VisiblePosition = 5;
-        ultraGridBand8.Columns.AddRange(new object[] {
+            ultraGridColumn44,
             ultraGridColumn45,
-            ultraGridColumn46,
+            ultraGridColumn46});
+        ultraGridColumn47.Header.VisiblePosition = 0;
+        ultraGridColumn48.Header.VisiblePosition = 1;
+        ultraGridBand8.Columns.AddRange(new object[] {
             ultraGridColumn47,
-            ultraGridColumn48,
-            ultraGridColumn49,
-            ultraGridColumn50});
-        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand7);
-        this.ultraGrid1.DisplayLayout.BandsSerializer.Add(ultraGridBand8);
-        this.ultraGrid1.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-        this.ultraGrid1.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            ultraGridColumn48});
+        ultraGridBand8.Hidden = true;
+        this.ultraGrid2.DisplayLayout.BandsSerializer.Add(ultraGridBand5);
+        this.ultraGrid2.DisplayLayout.BandsSerializer.Add(ultraGridBand6);
+        this.ultraGrid2.DisplayLayout.BandsSerializer.Add(ultraGridBand7);
+        this.ultraGrid2.DisplayLayout.BandsSerializer.Add(ultraGridBand8);
+        this.ultraGrid2.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+        this.ultraGrid2.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
         appearance14.BackColor = System.Drawing.SystemColors.ActiveBorder;
         appearance14.BackColor2 = System.Drawing.SystemColors.ControlDark;
         appearance14.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
         appearance14.BorderColor = System.Drawing.SystemColors.Window;
-        this.ultraGrid1.DisplayLayout.GroupByBox.Appearance = appearance14;
+        this.ultraGrid2.DisplayLayout.GroupByBox.Appearance = appearance14;
         appearance15.ForeColor = System.Drawing.SystemColors.GrayText;
-        this.ultraGrid1.DisplayLayout.GroupByBox.BandLabelAppearance = appearance15;
-        this.ultraGrid1.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+        this.ultraGrid2.DisplayLayout.GroupByBox.BandLabelAppearance = appearance15;
+        this.ultraGrid2.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
         appearance16.BackColor = System.Drawing.SystemColors.ControlLightLight;
         appearance16.BackColor2 = System.Drawing.SystemColors.Control;
         appearance16.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
         appearance16.ForeColor = System.Drawing.SystemColors.GrayText;
-        this.ultraGrid1.DisplayLayout.GroupByBox.PromptAppearance = appearance16;
-        this.ultraGrid1.DisplayLayout.MaxColScrollRegions = 1;
-        this.ultraGrid1.DisplayLayout.MaxRowScrollRegions = 1;
+        this.ultraGrid2.DisplayLayout.GroupByBox.PromptAppearance = appearance16;
+        this.ultraGrid2.DisplayLayout.MaxColScrollRegions = 1;
+        this.ultraGrid2.DisplayLayout.MaxRowScrollRegions = 1;
         appearance17.BackColor = System.Drawing.SystemColors.Window;
         appearance17.ForeColor = System.Drawing.SystemColors.ControlText;
-        this.ultraGrid1.DisplayLayout.Override.ActiveCellAppearance = appearance17;
+        this.ultraGrid2.DisplayLayout.Override.ActiveCellAppearance = appearance17;
         appearance18.BackColor = System.Drawing.SystemColors.Highlight;
         appearance18.ForeColor = System.Drawing.SystemColors.HighlightText;
-        this.ultraGrid1.DisplayLayout.Override.ActiveRowAppearance = appearance18;
-        this.ultraGrid1.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-        this.ultraGrid1.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+        this.ultraGrid2.DisplayLayout.Override.ActiveRowAppearance = appearance18;
+        this.ultraGrid2.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+        this.ultraGrid2.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
         appearance19.BackColor = System.Drawing.SystemColors.Window;
-        this.ultraGrid1.DisplayLayout.Override.CardAreaAppearance = appearance19;
+        this.ultraGrid2.DisplayLayout.Override.CardAreaAppearance = appearance19;
         appearance20.BorderColor = System.Drawing.Color.Silver;
         appearance20.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-        this.ultraGrid1.DisplayLayout.Override.CellAppearance = appearance20;
-        this.ultraGrid1.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-        this.ultraGrid1.DisplayLayout.Override.CellPadding = 0;
+        this.ultraGrid2.DisplayLayout.Override.CellAppearance = appearance20;
+        this.ultraGrid2.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+        this.ultraGrid2.DisplayLayout.Override.CellPadding = 0;
         appearance21.BackColor = System.Drawing.SystemColors.Control;
         appearance21.BackColor2 = System.Drawing.SystemColors.ControlDark;
         appearance21.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
         appearance21.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
         appearance21.BorderColor = System.Drawing.SystemColors.Window;
-        this.ultraGrid1.DisplayLayout.Override.GroupByRowAppearance = appearance21;
+        this.ultraGrid2.DisplayLayout.Override.GroupByRowAppearance = appearance21;
         appearance22.TextHAlignAsString = "Left";
-        this.ultraGrid1.DisplayLayout.Override.HeaderAppearance = appearance22;
-        this.ultraGrid1.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-        this.ultraGrid1.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+        this.ultraGrid2.DisplayLayout.Override.HeaderAppearance = appearance22;
+        this.ultraGrid2.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+        this.ultraGrid2.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
         appearance23.BackColor = System.Drawing.SystemColors.Window;
         appearance23.BorderColor = System.Drawing.Color.Silver;
-        this.ultraGrid1.DisplayLayout.Override.RowAppearance = appearance23;
-        this.ultraGrid1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
+        this.ultraGrid2.DisplayLayout.Override.RowAppearance = appearance23;
+        this.ultraGrid2.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
         appearance24.BackColor = System.Drawing.SystemColors.ControlLight;
-        this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance24;
-        this.ultraGrid1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-        this.ultraGrid1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-        this.ultraGrid1.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-        this.ultraGrid1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        this.ultraGrid1.Location = new System.Drawing.Point(6, 19);
-        this.ultraGrid1.Name = "ultraGrid1";
-        this.ultraGrid1.Size = new System.Drawing.Size(950, 442);
-        this.ultraGrid1.TabIndex = 10;
-        this.ultraGrid1.Text = "ultraGrid1";
+        this.ultraGrid2.DisplayLayout.Override.TemplateAddRowAppearance = appearance24;
+        this.ultraGrid2.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+        this.ultraGrid2.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+        this.ultraGrid2.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+        this.ultraGrid2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.ultraGrid2.Location = new System.Drawing.Point(0, 24);
+        this.ultraGrid2.Name = "ultraGrid2";
+        this.ultraGrid2.Size = new System.Drawing.Size(968, 153);
+        this.ultraGrid2.TabIndex = 13;
+        this.ultraGrid2.Text = "ultraGrid2";
         // 
-        // groupBox1
+        // ordersBindingSource_2
         // 
-        this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
-        this.groupBox1.Controls.Add(this.ultraGrid1);
-        this.groupBox1.Location = new System.Drawing.Point(12, 45);
-        this.groupBox1.Name = "groupBox1";
-        this.groupBox1.Size = new System.Drawing.Size(968, 467);
-        this.groupBox1.TabIndex = 2;
-        this.groupBox1.TabStop = false;
-        this.groupBox1.Text = "Orders";
+        this.ordersBindingSource_2.AllowNew = true;
+        this.ordersBindingSource_2.AutoCreateObjects = true;
+        this.ordersBindingSource_2.BindableNestedProperties = new string[] {
+        "Customer.Name",
+        "Customer.BillingAddress.StreetAddress",
+        "Customer.BillingAddress.City",
+        "DeliveryAddress.StreetAddress",
+        "DeliveryAddress.City"};
+        this.ordersBindingSource_2.ChildListsToConsider = null;
+        this.ordersBindingSource_2.ConsiderChildsOnlyInCurrent = true;
+        this.ordersBindingSource_2.DataSource = typeof(Order);
+        this.ordersBindingSource_2.NotifyChangesInNestedPropertiesFromChildlists = true;
+        this.ordersBindingSource_2.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[] {
+        this.orderlinesBindingSource};
+        this.ordersBindingSource_2.ListChangedOnChildList += new UI.ObjectBindingSource.ObjectBindingSource.ListChangedOnChildListEventHandler(this.ordersBindingSource_2_ListChangedOnChildList);
+        this.ordersBindingSource_2.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_2_CreatingObject);
         // 
-        // btnChange3
+        // chkNotifyChangesChildLists2
         // 
-        this.btnChange3.Location = new System.Drawing.Point(889, 12);
-        this.btnChange3.Name = "btnChange3";
-        this.btnChange3.Size = new System.Drawing.Size(79, 23);
-        this.btnChange3.TabIndex = 13;
-        this.btnChange3.Text = "Change 3";
-        this.btnChange3.UseVisualStyleBackColor = true;
-        this.btnChange3.Click += new System.EventHandler(this.btnChange3_Click);
+        this.chkNotifyChangesChildLists2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkNotifyChangesChildLists2.AutoSize = true;
+        this.chkNotifyChangesChildLists2.Checked = true;
+        this.chkNotifyChangesChildLists2.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkNotifyChangesChildLists2.Location = new System.Drawing.Point(150, 184);
+        this.chkNotifyChangesChildLists2.Name = "chkNotifyChangesChildLists2";
+        this.chkNotifyChangesChildLists2.Size = new System.Drawing.Size(139, 17);
+        this.chkNotifyChangesChildLists2.TabIndex = 24;
+        this.chkNotifyChangesChildLists2.Text = "NotifyChangesChildLists";
+        this.chkNotifyChangesChildLists2.UseVisualStyleBackColor = true;
+        this.chkNotifyChangesChildLists2.CheckedChanged += new System.EventHandler(this.chkNotifyChangesChildLists2_CheckedChanged);
+        // 
+        // chkConsiderOnlyDetails
+        // 
+        this.chkConsiderOnlyDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkConsiderOnlyDetails.AutoSize = true;
+        this.chkConsiderOnlyDetails.Checked = true;
+        this.chkConsiderOnlyDetails.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkConsiderOnlyDetails.Location = new System.Drawing.Point(19, 516);
+        this.chkConsiderOnlyDetails.Name = "chkConsiderOnlyDetails";
+        this.chkConsiderOnlyDetails.Size = new System.Drawing.Size(172, 17);
+        this.chkConsiderOnlyDetails.TabIndex = 25;
+        this.chkConsiderOnlyDetails.Text = "ConsiderOnly OrderLine.Details";
+        this.chkConsiderOnlyDetails.UseVisualStyleBackColor = true;
+        this.chkConsiderOnlyDetails.CheckedChanged += new System.EventHandler(this.chkConsiderOnlyDetails_CheckedChanged);
+        // 
+        // btnShowOBS
+        // 
+        this.btnShowOBS.Location = new System.Drawing.Point(267, 9);
+        this.btnShowOBS.Name = "btnShowOBS";
+        this.btnShowOBS.Size = new System.Drawing.Size(108, 23);
+        this.btnShowOBS.TabIndex = 24;
+        this.btnShowOBS.Text = "Show oBS alive";
+        this.btnShowOBS.UseVisualStyleBackColor = true;
+        this.btnShowOBS.Click += new System.EventHandler(this.btnShowOBS_Click);
+        // 
+        // uddCustomer
+        // 
+        this.uddCustomer.DataSource = this.customersBindingSource;
+        ultraGridColumn49.Header.VisiblePosition = 0;
+        ultraGridColumn50.Header.VisiblePosition = 1;
+        ultraGridColumn51.Header.VisiblePosition = 2;
+        ultraGridColumn52.Header.VisiblePosition = 3;
+        ultraGridColumn53.Header.VisiblePosition = 4;
+        ultraGridColumn54.Header.VisiblePosition = 5;
+        ultraGridBand9.Columns.AddRange(new object[] {
+            ultraGridColumn49,
+            ultraGridColumn50,
+            ultraGridColumn51,
+            ultraGridColumn52,
+            ultraGridColumn53,
+            ultraGridColumn54});
+        this.uddCustomer.DisplayLayout.BandsSerializer.Add(ultraGridBand9);
+        this.uddCustomer.DisplayMember = "Name";
+        this.uddCustomer.Location = new System.Drawing.Point(418, 504);
+        this.uddCustomer.Name = "uddCustomer";
+        this.uddCustomer.PreferredDropDownSize = new System.Drawing.Size(0, 0);
+        this.uddCustomer.Size = new System.Drawing.Size(128, 24);
+        this.uddCustomer.TabIndex = 11;
+        this.uddCustomer.ValueMember = "Self";
+        this.uddCustomer.Visible = false;
+        // 
+        // customersBindingSource
+        // 
+        this.customersBindingSource.AutoCreateObjects = false;
+        this.customersBindingSource.BindableNestedProperties = new string[0];
+        this.customersBindingSource.ChildListsToConsider = null;
+        this.customersBindingSource.ConsiderChildsOnlyInCurrent = true;
+        this.customersBindingSource.DataSource = typeof(Customer);
+        this.customersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.customersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        // 
+        // uddProduct
+        // 
+        this.uddProduct.DataSource = this.productsBindingSource;
+        ultraGridColumn55.Header.VisiblePosition = 0;
+        ultraGridColumn56.Header.VisiblePosition = 1;
+        ultraGridColumn57.Header.VisiblePosition = 2;
+        ultraGridColumn58.Header.VisiblePosition = 3;
+        ultraGridColumn59.Header.VisiblePosition = 4;
+        ultraGridColumn60.Header.VisiblePosition = 5;
+        ultraGridBand10.Columns.AddRange(new object[] {
+            ultraGridColumn55,
+            ultraGridColumn56,
+            ultraGridColumn57,
+            ultraGridColumn58,
+            ultraGridColumn59,
+            ultraGridColumn60});
+        this.uddProduct.DisplayLayout.BandsSerializer.Add(ultraGridBand10);
+        this.uddProduct.DisplayMember = "Name";
+        this.uddProduct.Location = new System.Drawing.Point(567, 504);
+        this.uddProduct.Name = "uddProduct";
+        this.uddProduct.PreferredDropDownSize = new System.Drawing.Size(0, 0);
+        this.uddProduct.Size = new System.Drawing.Size(128, 24);
+        this.uddProduct.TabIndex = 12;
+        this.uddProduct.ValueMember = "Self";
+        this.uddProduct.Visible = false;
+        // 
+        // productsBindingSource
+        // 
+        this.productsBindingSource.AutoCreateObjects = false;
+        this.productsBindingSource.BindableNestedProperties = new string[0];
+        this.productsBindingSource.ChildListsToConsider = null;
+        this.productsBindingSource.ConsiderChildsOnlyInCurrent = true;
+        this.productsBindingSource.DataSource = typeof(Product);
+        this.productsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.productsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // MainForm
         // 
@@ -631,26 +819,34 @@ partial class MainForm
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.BackColor = System.Drawing.Color.WhiteSmoke;
         this.ClientSize = new System.Drawing.Size(992, 545);
-        this.Controls.Add(this.btnChange3);
-        this.Controls.Add(this.uddProduct);
+        this.Controls.Add(this.chkConsiderOnlyDetails);
+        this.Controls.Add(this.btnShowOBS);
+        this.Controls.Add(this.splitContainer1);
         this.Controls.Add(this.uddCustomer);
-        this.Controls.Add(this.btnDeleteCustomer);
+        this.Controls.Add(this.btnObjectsAlive);
+        this.Controls.Add(this.cbAction);
+        this.Controls.Add(this.btnGC);
+        this.Controls.Add(this.btnChanges);
+        this.Controls.Add(this.uddProduct);
         this.Controls.Add(this.label1);
         this.Controls.Add(this.textBox1);
-        this.Controls.Add(this.btnChange1);
-        this.Controls.Add(this.btnChange2);
-        this.Controls.Add(this.btnDeleteAll);
-        this.Controls.Add(this.groupBox1);
         this.Name = "MainForm";
         this.Text = "ObjectBindingSource Demo (Nested Property Binding)";
-        ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
+        this.splitContainer1.Panel1.ResumeLayout(false);
+        this.splitContainer1.Panel1.PerformLayout();
+        this.splitContainer1.Panel2.ResumeLayout(false);
+        this.splitContainer1.Panel2.PerformLayout();
+        this.splitContainer1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.orderlinesBindingSource)).EndInit();
-        ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.detailOrderLinesBindingSource)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid2)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource_2)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.uddCustomer)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.uddProduct)).EndInit();
-        ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
-        this.groupBox1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
 
@@ -662,45 +858,30 @@ partial class MainForm
     private UI.ObjectBindingSource.ObjectBindingSource  ordersBindingSource;
     private UI.ObjectBindingSource.ObjectBindingSource orderlinesBindingSource;
     private UI.ObjectBindingSource.ObjectBindingSource customersBindingSource;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn3;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn4;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn5;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn6;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn7;
     private UI.ObjectBindingSource.ObjectBindingSource productsBindingSource;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn8;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn9;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn10;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn11;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn12;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn13;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn14;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn15;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn16;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn17;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn18;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn19;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn20;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn21;
-    private System.Windows.Forms.Button btnChange2;
-    private System.Windows.Forms.Button btnDeleteAll;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn22;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn23;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn24;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn25;
-    private System.Windows.Forms.Button btnChange1;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn26;
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn27;
-    private System.Windows.Forms.Button btnDeleteCustomer;
     internal Infragistics.Win.UltraWinGrid.UltraDropDown uddCustomer;
     internal Infragistics.Win.UltraWinGrid.UltraDropDown uddProduct;
+    private System.Windows.Forms.Button btnObjectsAlive;
+    private System.Windows.Forms.ComboBox cbAction;
+    private System.Windows.Forms.Button btnGC;
+    private System.Windows.Forms.Button btnChanges;
+    private System.Windows.Forms.CheckBox chkAutoCreateObjects;
+    private System.Windows.Forms.CheckBox chkNotifyChangesChildLists;
+    private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid2;
+    private System.Windows.Forms.SplitContainer splitContainer1;
+    private UI.ObjectBindingSource.ObjectBindingSource ordersBindingSource_2;
     private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid1;
-    private System.Windows.Forms.GroupBox groupBox1;
-    private System.Windows.Forms.Button btnChange3;
+    private System.Windows.Forms.CheckBox chkAutoCreateObjects2;
+    private System.Windows.Forms.CheckBox chkNotifyChangesChildLists2;
+    private UI.ObjectBindingSource.ObjectBindingSource detailOrderLinesBindingSource;
+    private System.Windows.Forms.Button btnShowOBS;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.CheckBox ChkConsiderChildsOnlyInCurrent;
+    private System.Windows.Forms.CheckBox ChkConsiderChildsOnlyInCurrent2;
+    private System.Windows.Forms.CheckBox chkConsiderOnlyDetails;
     
 
 }

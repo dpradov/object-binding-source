@@ -17,12 +17,18 @@ public class Product : BusinessBase
     private string _name;
     private double _unitPrice;
     private ProductType _type;
+    private string _otherProperty;
+    
+    public Product()
+    {
+    }
 
     public Product(int productId, string name, double unitPrice)
     {
         _productId = productId;
         _name = name;
         _unitPrice = unitPrice;
+        _otherProperty = "Other-" + name;
     }
 
 
@@ -64,6 +70,24 @@ public class Product : BusinessBase
             _type = value;
             OnPropertyChanged("Type");
         }
+    }
+
+    public string OtherProperty
+    {
+        get { return _otherProperty; }
+        set
+        {
+            _otherProperty = value;
+            OnPropertyChanged("OtherProperty");
+        }
+    }
+
+    public void ChangeMultiple()
+    { 
+        _unitPrice = 50;
+        _name += "^^**";
+        _otherProperty += "**";
+        OnPropertyChanged(null);
     }
 
     public Product Self

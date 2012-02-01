@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Test_UltraGrid")]
-[assembly: AssemblyDescription("Demo for ObjectBindingSource: Extension to the standard BindingSource to provide support for nested property accessors")]
+[assembly: AssemblyTitle("Test_Domain")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Test_UltraGrid")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCompany("egmasa")]
+[assembly: AssemblyProduct("Test_Domain")]
+[assembly: AssemblyCopyright("Copyright © egmasa 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-[assembly: Guid("3051b3dd-0d25-4478-9b75-f51c307e26a6")]
+[assembly: Guid("bca8aff8-bcf1-40f6-a1a9-798862b0d402")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
