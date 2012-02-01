@@ -12,20 +12,18 @@ namespace ObjectBindingSourceDemo
         [STAThread]
         static void Main()
         {
-            WeakReference _ordRef = null;
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm form = new MainForm();
 
-            _ordRef = new WeakReference(form._customers[0]);
+            //Note: 
+            // If turning on break on exception for ArgumentNullException in the debugger:
+            // http://connect.microsoft.com/VisualStudio/feedback/details/552261/bindingsource-object-string-constructor-throws-argumentnullexception-when-object-is-a-source-with-data-in-it
             Application.Run(form);
 
             form.Dispose();
             form = null;
             GC.Collect();
-            Console.WriteLine("El objeto referenciado sigue vivo: {0}", _ordRef.IsAlive);
-
         }
     }
 }

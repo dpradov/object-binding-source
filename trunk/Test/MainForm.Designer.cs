@@ -30,6 +30,9 @@ partial class MainForm
         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
+        this.ChkConsiderChildsOnlyInCurrent = new System.Windows.Forms.CheckBox();
+        this.chkAutoCreateObjects = new System.Windows.Forms.CheckBox();
+        this.chkNotifyChangesChildLists = new System.Windows.Forms.CheckBox();
         this.dataGridView1 = new System.Windows.Forms.DataGridView();
         this.orderNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.Customer = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -41,26 +44,10 @@ partial class MainForm
         this.deliveryAddressStreetAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.deliveryAddressCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.ordersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn5 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn8 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn9 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn11 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn14 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn15 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn17 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn18 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn19 = new System.Windows.Forms.DataGridViewComboBoxColumn();
         this.groupBox2 = new System.Windows.Forms.GroupBox();
+        this.ChkConsiderChildsOnlyInCurrent2 = new System.Windows.Forms.CheckBox();
+        this.chkAutoCreateObjects2 = new System.Windows.Forms.CheckBox();
+        this.chkNotifyChangesChildLists2 = new System.Windows.Forms.CheckBox();
         this.dataGridView2 = new System.Windows.Forms.DataGridView();
         this.Product = new System.Windows.Forms.DataGridViewComboBoxColumn();
         this.productsBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
@@ -69,22 +56,22 @@ partial class MainForm
         this.productProductIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.Product_UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Product_Type = new System.Windows.Forms.DataGridViewComboBoxColumn();
         this.orderlinesBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
-        this.btnDeleteAll = new System.Windows.Forms.Button();
-        this.btnChange2 = new System.Windows.Forms.Button();
-        this.dataGridViewComboBoxColumn20 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn21 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn22 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn23 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn24 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.dataGridViewComboBoxColumn25 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.btnChange1 = new System.Windows.Forms.Button();
-        this.dataGridViewComboBoxColumn26 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+        this.btnChanges = new System.Windows.Forms.Button();
         this.textBox1 = new System.Windows.Forms.TextBox();
         this.label1 = new System.Windows.Forms.Label();
-        this.dataGridViewComboBoxColumn27 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-        this.btnDeleteCustomer = new System.Windows.Forms.Button();
+        this.comboBox1 = new System.Windows.Forms.ComboBox();
+        this.otherItemsBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.comboBox2 = new System.Windows.Forms.ComboBox();
+        this.simpleClassesBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
+        this.btnGC = new System.Windows.Forms.Button();
+        this.cbAction = new System.Windows.Forms.ComboBox();
+        this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+        this.btnObjectsAlive = new System.Windows.Forms.Button();
+        this.btnShowOBS = new System.Windows.Forms.Button();
+        this.chkConsiderOnlyDetails = new System.Windows.Forms.CheckBox();
+        this.btnHookedObjects = new System.Windows.Forms.Button();
+        this.lblDebugFile = new System.Windows.Forms.Label();
         this.groupBox1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -93,19 +80,64 @@ partial class MainForm
         ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.orderlinesBindingSource)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.otherItemsBindingSource)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.simpleClassesBindingSource)).BeginInit();
         this.SuspendLayout();
         // 
         // groupBox1
         // 
         this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                     | System.Windows.Forms.AnchorStyles.Right)));
+        this.groupBox1.Controls.Add(this.ChkConsiderChildsOnlyInCurrent);
+        this.groupBox1.Controls.Add(this.chkAutoCreateObjects);
+        this.groupBox1.Controls.Add(this.chkNotifyChangesChildLists);
         this.groupBox1.Controls.Add(this.dataGridView1);
         this.groupBox1.Location = new System.Drawing.Point(12, 45);
         this.groupBox1.Name = "groupBox1";
-        this.groupBox1.Size = new System.Drawing.Size(968, 228);
+        this.groupBox1.Size = new System.Drawing.Size(968, 238);
         this.groupBox1.TabIndex = 2;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "Orders";
+        // 
+        // ChkConsiderChildsOnlyInCurrent
+        // 
+        this.ChkConsiderChildsOnlyInCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.ChkConsiderChildsOnlyInCurrent.AutoSize = true;
+        this.ChkConsiderChildsOnlyInCurrent.Checked = true;
+        this.ChkConsiderChildsOnlyInCurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.ChkConsiderChildsOnlyInCurrent.Location = new System.Drawing.Point(317, 215);
+        this.ChkConsiderChildsOnlyInCurrent.Name = "ChkConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent.Size = new System.Drawing.Size(159, 17);
+        this.ChkConsiderChildsOnlyInCurrent.TabIndex = 27;
+        this.ChkConsiderChildsOnlyInCurrent.Text = "ConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent.UseVisualStyleBackColor = true;
+        this.ChkConsiderChildsOnlyInCurrent.CheckedChanged += new System.EventHandler(this.ChkConsiderChildsOnlyInCurrent_CheckedChanged);
+        // 
+        // chkAutoCreateObjects
+        // 
+        this.chkAutoCreateObjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkAutoCreateObjects.AutoSize = true;
+        this.chkAutoCreateObjects.Checked = true;
+        this.chkAutoCreateObjects.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkAutoCreateObjects.Location = new System.Drawing.Point(16, 215);
+        this.chkAutoCreateObjects.Name = "chkAutoCreateObjects";
+        this.chkAutoCreateObjects.Size = new System.Drawing.Size(115, 17);
+        this.chkAutoCreateObjects.TabIndex = 25;
+        this.chkAutoCreateObjects.Text = "AutoCreateObjects";
+        this.chkAutoCreateObjects.UseVisualStyleBackColor = true;
+        this.chkAutoCreateObjects.CheckedChanged += new System.EventHandler(this.chkAutoCreateObjects_CheckedChanged);
+        // 
+        // chkNotifyChangesChildLists
+        // 
+        this.chkNotifyChangesChildLists.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkNotifyChangesChildLists.AutoSize = true;
+        this.chkNotifyChangesChildLists.Location = new System.Drawing.Point(162, 215);
+        this.chkNotifyChangesChildLists.Name = "chkNotifyChangesChildLists";
+        this.chkNotifyChangesChildLists.Size = new System.Drawing.Size(139, 17);
+        this.chkNotifyChangesChildLists.TabIndex = 26;
+        this.chkNotifyChangesChildLists.Text = "NotifyChangesChildLists";
+        this.chkNotifyChangesChildLists.UseVisualStyleBackColor = true;
+        this.chkNotifyChangesChildLists.CheckedChanged += new System.EventHandler(this.chkNotifyChangesChildLists_CheckedChanged);
         // 
         // dataGridView1
         // 
@@ -122,25 +154,24 @@ partial class MainForm
         this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
         this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-        this.orderNumberDataGridViewTextBoxColumn,
-        this.Customer,
-        this.orderDateDataGridViewTextBoxColumn,
-        this.customerNameDataGridViewTextBoxColumn,
-        this.customerBillingAddressStreetAddressDataGridViewTextBoxColumn,
-        this.customerBillingAddressCityDataGridViewTextBoxColumn,
-        this.deliveryAddressStreetAddressDataGridViewTextBoxColumn,
-        this.deliveryAddressCityDataGridViewTextBoxColumn});
+            this.orderNumberDataGridViewTextBoxColumn,
+            this.Customer,
+            this.orderDateDataGridViewTextBoxColumn,
+            this.customerNameDataGridViewTextBoxColumn,
+            this.customerBillingAddressStreetAddressDataGridViewTextBoxColumn,
+            this.customerBillingAddressCityDataGridViewTextBoxColumn,
+            this.deliveryAddressStreetAddressDataGridViewTextBoxColumn,
+            this.deliveryAddressCityDataGridViewTextBoxColumn});
         this.dataGridView1.DataSource = this.ordersBindingSource;
         this.dataGridView1.EnableHeadersVisualStyles = false;
         this.dataGridView1.GridColor = System.Drawing.Color.MistyRose;
-        this.dataGridView1.Location = new System.Drawing.Point(0, 19);
+        this.dataGridView1.Location = new System.Drawing.Point(7, 19);
         this.dataGridView1.Name = "dataGridView1";
-        this.dataGridView1.Size = new System.Drawing.Size(956, 203);
+        this.dataGridView1.Size = new System.Drawing.Size(956, 185);
         this.dataGridView1.TabIndex = 0;
         // 
         // orderNumberDataGridViewTextBoxColumn
         // 
-        this.orderNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
         this.orderNumberDataGridViewTextBoxColumn.DataPropertyName = "OrderNumber";
         this.orderNumberDataGridViewTextBoxColumn.HeaderText = "OrderNumber";
         this.orderNumberDataGridViewTextBoxColumn.Name = "orderNumberDataGridViewTextBoxColumn";
@@ -161,7 +192,11 @@ partial class MainForm
         // 
         this.customersBindingSource.AutoCreateObjects = false;
         this.customersBindingSource.BindableNestedProperties = new string[0];
+        this.customersBindingSource.ChildListsToConsider = null;
+        this.customersBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.customersBindingSource.DataSource = typeof(Customer);
+        this.customersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.customersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // orderDateDataGridViewTextBoxColumn
         // 
@@ -183,7 +218,6 @@ partial class MainForm
         // 
         // customerBillingAddressCityDataGridViewTextBoxColumn
         // 
-        this.customerBillingAddressCityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
         this.customerBillingAddressCityDataGridViewTextBoxColumn.DataPropertyName = "Customer_BillingAddress_City";
         this.customerBillingAddressCityDataGridViewTextBoxColumn.HeaderText = "Customer BillingAddress City";
         this.customerBillingAddressCityDataGridViewTextBoxColumn.Name = "customerBillingAddressCityDataGridViewTextBoxColumn";
@@ -192,7 +226,6 @@ partial class MainForm
         // 
         // deliveryAddressStreetAddressDataGridViewTextBoxColumn
         // 
-        this.deliveryAddressStreetAddressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
         this.deliveryAddressStreetAddressDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress_StreetAddress";
         this.deliveryAddressStreetAddressDataGridViewTextBoxColumn.HeaderText = "DeliveryAddress StreetAddress";
         this.deliveryAddressStreetAddressDataGridViewTextBoxColumn.Name = "deliveryAddressStreetAddressDataGridViewTextBoxColumn";
@@ -200,7 +233,6 @@ partial class MainForm
         // 
         // deliveryAddressCityDataGridViewTextBoxColumn
         // 
-        this.deliveryAddressCityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
         this.deliveryAddressCityDataGridViewTextBoxColumn.DataPropertyName = "DeliveryAddress_City";
         this.deliveryAddressCityDataGridViewTextBoxColumn.HeaderText = "DeliveryAddress City";
         this.deliveryAddressCityDataGridViewTextBoxColumn.Name = "deliveryAddressCityDataGridViewTextBoxColumn";
@@ -211,178 +243,72 @@ partial class MainForm
         this.ordersBindingSource.AllowNew = true;
         this.ordersBindingSource.AutoCreateObjects = true;
         this.ordersBindingSource.BindableNestedProperties = new string[] {
-    "Customer.Name",
-    "Customer.BillingAddress.StreetAddress",
-    "Customer.BillingAddress.City",
-    "DeliveryAddress.StreetAddress",
-    "DeliveryAddress.City"};
+        "Customer.Name",
+        "Customer.BillingAddress.StreetAddress",
+        "Customer.BillingAddress.City",
+        "DeliveryAddress.StreetAddress",
+        "DeliveryAddress.City"};
+        this.ordersBindingSource.ChildListsToConsider = null;
+        this.ordersBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.ordersBindingSource.DataSource = typeof(Order);
+        this.ordersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.ordersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         this.ordersBindingSource.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_CreatingObject);
-        // 
-        // dataGridViewComboBoxColumn1
-        // 
-        this.dataGridViewComboBoxColumn1.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn1.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-        this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn2
-        // 
-        this.dataGridViewComboBoxColumn2.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn2.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
-        this.dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn3
-        // 
-        this.dataGridViewComboBoxColumn3.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn3.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn3.Name = "dataGridViewComboBoxColumn3";
-        this.dataGridViewComboBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn4
-        // 
-        this.dataGridViewComboBoxColumn4.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn4.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn4.Name = "dataGridViewComboBoxColumn4";
-        this.dataGridViewComboBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn5
-        // 
-        this.dataGridViewComboBoxColumn5.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn5.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn5.Name = "dataGridViewComboBoxColumn5";
-        this.dataGridViewComboBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn6
-        // 
-        this.dataGridViewComboBoxColumn6.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn6.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn6.Name = "dataGridViewComboBoxColumn6";
-        this.dataGridViewComboBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn7
-        // 
-        this.dataGridViewComboBoxColumn7.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn7.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn7.Name = "dataGridViewComboBoxColumn7";
-        this.dataGridViewComboBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn8
-        // 
-        this.dataGridViewComboBoxColumn8.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn8.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn8.Name = "dataGridViewComboBoxColumn8";
-        this.dataGridViewComboBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn9
-        // 
-        this.dataGridViewComboBoxColumn9.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn9.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn9.Name = "dataGridViewComboBoxColumn9";
-        this.dataGridViewComboBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn10
-        // 
-        this.dataGridViewComboBoxColumn10.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn10.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn10.Name = "dataGridViewComboBoxColumn10";
-        this.dataGridViewComboBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn11
-        // 
-        this.dataGridViewComboBoxColumn11.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn11.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn11.Name = "dataGridViewComboBoxColumn11";
-        this.dataGridViewComboBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn12
-        // 
-        this.dataGridViewComboBoxColumn12.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn12.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn12.Name = "dataGridViewComboBoxColumn12";
-        this.dataGridViewComboBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn13
-        // 
-        this.dataGridViewComboBoxColumn13.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn13.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn13.Name = "dataGridViewComboBoxColumn13";
-        this.dataGridViewComboBoxColumn13.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn14
-        // 
-        this.dataGridViewComboBoxColumn14.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn14.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn14.Name = "dataGridViewComboBoxColumn14";
-        this.dataGridViewComboBoxColumn14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn15
-        // 
-        this.dataGridViewComboBoxColumn15.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn15.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn15.Name = "dataGridViewComboBoxColumn15";
-        this.dataGridViewComboBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn16
-        // 
-        this.dataGridViewComboBoxColumn16.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn16.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn16.Name = "dataGridViewComboBoxColumn16";
-        this.dataGridViewComboBoxColumn16.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn17
-        // 
-        this.dataGridViewComboBoxColumn17.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn17.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn17.Name = "dataGridViewComboBoxColumn17";
-        this.dataGridViewComboBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn18
-        // 
-        this.dataGridViewComboBoxColumn18.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn18.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn18.Name = "dataGridViewComboBoxColumn18";
-        this.dataGridViewComboBoxColumn18.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn19
-        // 
-        this.dataGridViewComboBoxColumn19.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn19.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn19.Name = "dataGridViewComboBoxColumn19";
-        this.dataGridViewComboBoxColumn19.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+        this.ordersBindingSource.NestedError += new UI.ObjectBindingSource.ObjectBindingSource.NestedErrorEventHandler(this.ordersBindingSource_NestedError);
         // 
         // groupBox2
         // 
         this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                     | System.Windows.Forms.AnchorStyles.Left)
                     | System.Windows.Forms.AnchorStyles.Right)));
+        this.groupBox2.Controls.Add(this.ChkConsiderChildsOnlyInCurrent2);
+        this.groupBox2.Controls.Add(this.chkAutoCreateObjects2);
+        this.groupBox2.Controls.Add(this.chkNotifyChangesChildLists2);
         this.groupBox2.Controls.Add(this.dataGridView2);
         this.groupBox2.Location = new System.Drawing.Point(12, 283);
         this.groupBox2.Name = "groupBox2";
         this.groupBox2.Size = new System.Drawing.Size(968, 211);
         this.groupBox2.TabIndex = 3;
         this.groupBox2.TabStop = false;
-        this.groupBox2.Text = "Order Details";
+        this.groupBox2.Text = "Order Lines";
+        // 
+        // ChkConsiderChildsOnlyInCurrent2
+        // 
+        this.ChkConsiderChildsOnlyInCurrent2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.ChkConsiderChildsOnlyInCurrent2.AutoSize = true;
+        this.ChkConsiderChildsOnlyInCurrent2.Checked = true;
+        this.ChkConsiderChildsOnlyInCurrent2.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.ChkConsiderChildsOnlyInCurrent2.Location = new System.Drawing.Point(314, 188);
+        this.ChkConsiderChildsOnlyInCurrent2.Name = "ChkConsiderChildsOnlyInCurrent2";
+        this.ChkConsiderChildsOnlyInCurrent2.Size = new System.Drawing.Size(159, 17);
+        this.ChkConsiderChildsOnlyInCurrent2.TabIndex = 29;
+        this.ChkConsiderChildsOnlyInCurrent2.Text = "ConsiderChildsOnlyInCurrent";
+        this.ChkConsiderChildsOnlyInCurrent2.UseVisualStyleBackColor = true;
+        this.ChkConsiderChildsOnlyInCurrent2.CheckedChanged += new System.EventHandler(this.ChkConsiderChildsOnlyInCurrent2_CheckedChanged);
+        // 
+        // chkAutoCreateObjects2
+        // 
+        this.chkAutoCreateObjects2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkAutoCreateObjects2.AutoSize = true;
+        this.chkAutoCreateObjects2.Location = new System.Drawing.Point(12, 188);
+        this.chkAutoCreateObjects2.Name = "chkAutoCreateObjects2";
+        this.chkAutoCreateObjects2.Size = new System.Drawing.Size(115, 17);
+        this.chkAutoCreateObjects2.TabIndex = 27;
+        this.chkAutoCreateObjects2.Text = "AutoCreateObjects";
+        this.chkAutoCreateObjects2.UseVisualStyleBackColor = true;
+        this.chkAutoCreateObjects2.CheckedChanged += new System.EventHandler(this.chkAutoCreateObjects2_CheckedChanged);
+        // 
+        // chkNotifyChangesChildLists2
+        // 
+        this.chkNotifyChangesChildLists2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkNotifyChangesChildLists2.AutoSize = true;
+        this.chkNotifyChangesChildLists2.Location = new System.Drawing.Point(154, 188);
+        this.chkNotifyChangesChildLists2.Name = "chkNotifyChangesChildLists2";
+        this.chkNotifyChangesChildLists2.Size = new System.Drawing.Size(139, 17);
+        this.chkNotifyChangesChildLists2.TabIndex = 28;
+        this.chkNotifyChangesChildLists2.Text = "NotifyChangesChildLists";
+        this.chkNotifyChangesChildLists2.UseVisualStyleBackColor = true;
+        this.chkNotifyChangesChildLists2.CheckedChanged += new System.EventHandler(this.chkNotifyChangesChildLists2_CheckedChanged);
         // 
         // dataGridView2
         // 
@@ -401,20 +327,19 @@ partial class MainForm
         this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
         this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-        this.Product,
-        this.productDataGridViewTextBoxColumn,
-        this.quantityDataGridViewTextBoxColumn,
-        this.productProductIdDataGridViewTextBoxColumn,
-        this.Product_UnitPrice,
-        this.Product_Name,
-        this.Product_Type});
+            this.Product,
+            this.productDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn,
+            this.productProductIdDataGridViewTextBoxColumn,
+            this.Product_UnitPrice,
+            this.Product_Name});
         this.dataGridView2.DataSource = this.orderlinesBindingSource;
         this.dataGridView2.EnableHeadersVisualStyles = false;
         this.dataGridView2.GridColor = System.Drawing.Color.MistyRose;
         this.dataGridView2.Location = new System.Drawing.Point(6, 19);
         this.dataGridView2.Name = "dataGridView2";
         this.dataGridView2.RowHeadersVisible = false;
-        this.dataGridView2.Size = new System.Drawing.Size(956, 176);
+        this.dataGridView2.Size = new System.Drawing.Size(956, 161);
         this.dataGridView2.TabIndex = 2;
         // 
         // Product
@@ -432,7 +357,11 @@ partial class MainForm
         // 
         this.productsBindingSource.AutoCreateObjects = false;
         this.productsBindingSource.BindableNestedProperties = new string[0];
+        this.productsBindingSource.ChildListsToConsider = null;
+        this.productsBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.productsBindingSource.DataSource = typeof(Product);
+        this.productsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.productsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // productDataGridViewTextBoxColumn
         // 
@@ -464,115 +393,36 @@ partial class MainForm
         this.Product_Name.HeaderText = "Product_Name";
         this.Product_Name.Name = "Product_Name";
         // 
-        // Product_Type
-        // 
-        this.Product_Type.DataPropertyName = "Product_Type";
-        this.Product_Type.HeaderText = "Product_Type";
-        this.Product_Type.Name = "Product_Type";
-        this.Product_Type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.Product_Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
         // orderlinesBindingSource
         // 
         this.orderlinesBindingSource.AllowNew = true;
         this.orderlinesBindingSource.AutoCreateObjects = false;
         this.orderlinesBindingSource.BindableNestedProperties = new string[] {
-    "Product.ProductId",
-    "Product.UnitPrice",
-    "Product.Name",
-    "Product.Type"};
+        "Product.ProductId",
+        "Product.UnitPrice",
+        "Product.Name"};
+        this.orderlinesBindingSource.ChildListsToConsider = null;
+        this.orderlinesBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.orderlinesBindingSource.DataMember = "OrderLines";
         this.orderlinesBindingSource.DataSource = this.ordersBindingSource;
+        this.orderlinesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.orderlinesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        this.orderlinesBindingSource.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_2_CreatingObject);
         // 
-        // btnDeleteAll
+        // btnChanges
         // 
-        this.btnDeleteAll.Location = new System.Drawing.Point(18, 12);
-        this.btnDeleteAll.Name = "btnDeleteAll";
-        this.btnDeleteAll.Size = new System.Drawing.Size(108, 23);
-        this.btnDeleteAll.TabIndex = 5;
-        this.btnDeleteAll.Text = "Delete All";
-        this.btnDeleteAll.UseVisualStyleBackColor = true;
-        this.btnDeleteAll.Click += new System.EventHandler(this.DeleteAll_Click);
-        // 
-        // btnChange2
-        // 
-        this.btnChange2.Location = new System.Drawing.Point(876, 12);
-        this.btnChange2.Name = "btnChange2";
-        this.btnChange2.Size = new System.Drawing.Size(92, 23);
-        this.btnChange2.TabIndex = 4;
-        this.btnChange2.Text = "Change 2";
-        this.btnChange2.UseVisualStyleBackColor = true;
-        this.btnChange2.Click += new System.EventHandler(this.btnChange2_Click);
-        // 
-        // dataGridViewComboBoxColumn20
-        // 
-        this.dataGridViewComboBoxColumn20.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn20.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn20.Name = "dataGridViewComboBoxColumn20";
-        this.dataGridViewComboBoxColumn20.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn21
-        // 
-        this.dataGridViewComboBoxColumn21.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn21.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn21.Name = "dataGridViewComboBoxColumn21";
-        this.dataGridViewComboBoxColumn21.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn22
-        // 
-        this.dataGridViewComboBoxColumn22.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn22.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn22.Name = "dataGridViewComboBoxColumn22";
-        this.dataGridViewComboBoxColumn22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn23
-        // 
-        this.dataGridViewComboBoxColumn23.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn23.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn23.Name = "dataGridViewComboBoxColumn23";
-        this.dataGridViewComboBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn23.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn24
-        // 
-        this.dataGridViewComboBoxColumn24.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn24.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn24.Name = "dataGridViewComboBoxColumn24";
-        this.dataGridViewComboBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn24.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // dataGridViewComboBoxColumn25
-        // 
-        this.dataGridViewComboBoxColumn25.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn25.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn25.Name = "dataGridViewComboBoxColumn25";
-        this.dataGridViewComboBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-        // 
-        // btnChange1
-        // 
-        this.btnChange1.Location = new System.Drawing.Point(778, 12);
-        this.btnChange1.Name = "btnChange1";
-        this.btnChange1.Size = new System.Drawing.Size(92, 23);
-        this.btnChange1.TabIndex = 6;
-        this.btnChange1.Text = "Change 1";
-        this.btnChange1.UseVisualStyleBackColor = true;
-        this.btnChange1.Click += new System.EventHandler(this.btnChange1_Click);
-        // 
-        // dataGridViewComboBoxColumn26
-        // 
-        this.dataGridViewComboBoxColumn26.DataPropertyName = "Product";
-        this.dataGridViewComboBoxColumn26.HeaderText = "Product";
-        this.dataGridViewComboBoxColumn26.Name = "dataGridViewComboBoxColumn26";
-        this.dataGridViewComboBoxColumn26.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn26.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+        this.btnChanges.Location = new System.Drawing.Point(923, 11);
+        this.btnChanges.Name = "btnChanges";
+        this.btnChanges.Size = new System.Drawing.Size(57, 23);
+        this.btnChanges.TabIndex = 6;
+        this.btnChanges.Text = "Apply";
+        this.btnChanges.UseVisualStyleBackColor = true;
+        this.btnChanges.Click += new System.EventHandler(this.btnChanges_Click);
         // 
         // textBox1
         // 
-        this.textBox1.Location = new System.Drawing.Point(343, 14);
+        this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.textBox1.Location = new System.Drawing.Point(948, 501);
         this.textBox1.Name = "textBox1";
         this.textBox1.Size = new System.Drawing.Size(31, 20);
         this.textBox1.TabIndex = 7;
@@ -580,30 +430,155 @@ partial class MainForm
         // 
         // label1
         // 
-        this.label1.AutoSize = true;
-        this.label1.Location = new System.Drawing.Point(245, 17);
+        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.label1.Location = new System.Drawing.Point(844, 502);
         this.label1.Name = "label1";
-        this.label1.Size = new System.Drawing.Size(97, 13);
+        this.label1.Size = new System.Drawing.Size(103, 19);
         this.label1.TabIndex = 8;
         this.label1.Text = "Max. Debug Level:";
         // 
-        // dataGridViewComboBoxColumn27
+        // comboBox1
         // 
-        this.dataGridViewComboBoxColumn27.DataPropertyName = "Customer";
-        this.dataGridViewComboBoxColumn27.HeaderText = "Customer";
-        this.dataGridViewComboBoxColumn27.Name = "dataGridViewComboBoxColumn27";
-        this.dataGridViewComboBoxColumn27.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridViewComboBoxColumn27.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+        this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.comboBox1.DataSource = this.otherItemsBindingSource;
+        this.comboBox1.DisplayMember = "Product_Name";
+        this.comboBox1.FormattingEnabled = true;
+        this.comboBox1.Location = new System.Drawing.Point(244, 514);
+        this.comboBox1.Name = "comboBox1";
+        this.comboBox1.Size = new System.Drawing.Size(121, 21);
+        this.comboBox1.TabIndex = 10;
         // 
-        // btnDeleteCustomer
+        // otherItemsBindingSource
         // 
-        this.btnDeleteCustomer.Location = new System.Drawing.Point(132, 11);
-        this.btnDeleteCustomer.Name = "btnDeleteCustomer";
-        this.btnDeleteCustomer.Size = new System.Drawing.Size(108, 23);
-        this.btnDeleteCustomer.TabIndex = 9;
-        this.btnDeleteCustomer.Text = "Delete Customer[0]";
-        this.btnDeleteCustomer.UseVisualStyleBackColor = true;
-        this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
+        this.otherItemsBindingSource.AutoCreateObjects = false;
+        this.otherItemsBindingSource.BindableNestedProperties = new string[] {
+        "Product.Name"};
+        this.otherItemsBindingSource.ChildListsToConsider = null;
+        this.otherItemsBindingSource.ConsiderChildsOnlyInCurrent = true;
+        this.otherItemsBindingSource.DataSource = typeof(OtherItem);
+        this.otherItemsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.otherItemsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        // 
+        // comboBox2
+        // 
+        this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.comboBox2.DataSource = this.simpleClassesBindingSource;
+        this.comboBox2.DisplayMember = "MyProperty";
+        this.comboBox2.FormattingEnabled = true;
+        this.comboBox2.Location = new System.Drawing.Point(400, 514);
+        this.comboBox2.Name = "comboBox2";
+        this.comboBox2.Size = new System.Drawing.Size(121, 21);
+        this.comboBox2.TabIndex = 11;
+        // 
+        // simpleClassesBindingSource
+        // 
+        this.simpleClassesBindingSource.AutoCreateObjects = true;
+        this.simpleClassesBindingSource.BindableNestedProperties = new string[0];
+        this.simpleClassesBindingSource.ChildListsToConsider = null;
+        this.simpleClassesBindingSource.ConsiderChildsOnlyInCurrent = true;
+        this.simpleClassesBindingSource.DataSource = typeof(SimpleClass);
+        this.simpleClassesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.simpleClassesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
+        // 
+        // btnGC
+        // 
+        this.btnGC.Location = new System.Drawing.Point(375, 12);
+        this.btnGC.Name = "btnGC";
+        this.btnGC.Size = new System.Drawing.Size(75, 23);
+        this.btnGC.TabIndex = 12;
+        this.btnGC.Text = "GC.Collect";
+        this.btnGC.UseVisualStyleBackColor = true;
+        this.btnGC.Click += new System.EventHandler(this.btnGC_Click);
+        // 
+        // cbAction
+        // 
+        this.cbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        this.cbAction.FormattingEnabled = true;
+        this.cbAction.Items.AddRange(new object[] {
+            " 0: MOD \"Keyboard\"",
+            " 1: MOD \"Jane Wilson\" & \"Bill Smith\" ",
+            " 2: MOD \"Keyboard\" & \"Mouse\"",
+            " 3: INC OrderDate: Order-1 & Order-2",
+            " 4: Order-1.OrderLines[1].Product <==  Order-1.OrderLines[0].Product",
+            " 5: INC OrderLines[0].Quantity:  Order-1 & Order-2",
+            " 6: INC Customer.Age  <Jane Wilson> & <Bill Smith>",
+            "20: MOD Orders[0].OrderLines[0].Details[0].NotShownProperty",
+            " 7: INC Product.UnitPrice: <Keyboard> & <Mouse>",
+            " 8: MOD <Keyboard>.ChangeMultiple (Property=Nothing)",
+            "----------",
+            "13: Add New Order (4: <Jane Wilson>)",
+            "14: Remove New Order (4: <Jane Wilson>)",
+            "24: INSERT New Order (4: <Jane Wilson>) at position 1",
+            "-----",
+            "15: MOD ordersBindingSource.BindableNestedProperties: A",
+            "16: MOD ordersBindingSource.BindableNestedProperties: B",
+            "17: MOD orderlinesBindingSource.BindableNestedProperties: A",
+            "--------",
+            "23: MOD ordersBindingSource.BindableNestedProperties: C",
+            "------",
+            "21: Orders[0].OrderLines = Orders[0].OrderLines",
+            "22: Orders[0].OrderLines = Orders[1].OrderLines",
+            "-----------------",
+            " 9: Remove <Samantha Brown>",
+            "10: Remove <LapTop>",
+            "11: Delete All",
+            "12: BindingSourceS.Dispose"});
+        this.cbAction.Location = new System.Drawing.Point(474, 12);
+        this.cbAction.Name = "cbAction";
+        this.cbAction.Size = new System.Drawing.Size(443, 21);
+        this.cbAction.TabIndex = 13;
+        // 
+        // btnObjectsAlive
+        // 
+        this.btnObjectsAlive.Location = new System.Drawing.Point(149, 12);
+        this.btnObjectsAlive.Name = "btnObjectsAlive";
+        this.btnObjectsAlive.Size = new System.Drawing.Size(108, 23);
+        this.btnObjectsAlive.TabIndex = 15;
+        this.btnObjectsAlive.Text = "Show Objects Alive";
+        this.btnObjectsAlive.UseVisualStyleBackColor = true;
+        this.btnObjectsAlive.Click += new System.EventHandler(this.btnObjectsAlive_Click);
+        // 
+        // btnShowOBS
+        // 
+        this.btnShowOBS.Location = new System.Drawing.Point(264, 12);
+        this.btnShowOBS.Name = "btnShowOBS";
+        this.btnShowOBS.Size = new System.Drawing.Size(101, 23);
+        this.btnShowOBS.TabIndex = 25;
+        this.btnShowOBS.Text = "Show oBS alive";
+        this.btnShowOBS.UseVisualStyleBackColor = true;
+        this.btnShowOBS.Click += new System.EventHandler(this.btnShowOBS_Click);
+        // 
+        // chkConsiderOnlyDetails
+        // 
+        this.chkConsiderOnlyDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkConsiderOnlyDetails.AutoSize = true;
+        this.chkConsiderOnlyDetails.Checked = true;
+        this.chkConsiderOnlyDetails.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkConsiderOnlyDetails.Location = new System.Drawing.Point(18, 516);
+        this.chkConsiderOnlyDetails.Name = "chkConsiderOnlyDetails";
+        this.chkConsiderOnlyDetails.Size = new System.Drawing.Size(172, 17);
+        this.chkConsiderOnlyDetails.TabIndex = 26;
+        this.chkConsiderOnlyDetails.Text = "ConsiderOnly OrderLine.Details";
+        this.chkConsiderOnlyDetails.UseVisualStyleBackColor = true;
+        // 
+        // btnHookedObjects
+        // 
+        this.btnHookedObjects.Location = new System.Drawing.Point(18, 12);
+        this.btnHookedObjects.Name = "btnHookedObjects";
+        this.btnHookedObjects.Size = new System.Drawing.Size(125, 23);
+        this.btnHookedObjects.TabIndex = 27;
+        this.btnHookedObjects.Text = "Show Hooked Objects";
+        this.btnHookedObjects.UseVisualStyleBackColor = true;
+        this.btnHookedObjects.Click += new System.EventHandler(this.btnHookedObjects_Click);
+        // 
+        // lblDebugFile
+        // 
+        this.lblDebugFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.lblDebugFile.Location = new System.Drawing.Point(782, 524);
+        this.lblDebugFile.Name = "lblDebugFile";
+        this.lblDebugFile.Size = new System.Drawing.Size(192, 19);
+        this.lblDebugFile.TabIndex = 28;
+        this.lblDebugFile.Text = "FILE";
         // 
         // MainForm
         // 
@@ -611,24 +586,34 @@ partial class MainForm
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.BackColor = System.Drawing.Color.WhiteSmoke;
         this.ClientSize = new System.Drawing.Size(992, 545);
-        this.Controls.Add(this.btnDeleteCustomer);
+        this.Controls.Add(this.lblDebugFile);
+        this.Controls.Add(this.btnHookedObjects);
+        this.Controls.Add(this.chkConsiderOnlyDetails);
+        this.Controls.Add(this.btnShowOBS);
+        this.Controls.Add(this.btnObjectsAlive);
+        this.Controls.Add(this.cbAction);
+        this.Controls.Add(this.btnGC);
+        this.Controls.Add(this.comboBox2);
+        this.Controls.Add(this.comboBox1);
         this.Controls.Add(this.label1);
         this.Controls.Add(this.textBox1);
-        this.Controls.Add(this.btnChange1);
-        this.Controls.Add(this.btnChange2);
-        this.Controls.Add(this.btnDeleteAll);
+        this.Controls.Add(this.btnChanges);
         this.Controls.Add(this.groupBox2);
         this.Controls.Add(this.groupBox1);
         this.Name = "MainForm";
         this.Text = "ObjectBindingSource Demo (Nested Property Binding)";
         this.groupBox1.ResumeLayout(false);
+        this.groupBox1.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
         this.groupBox2.ResumeLayout(false);
+        this.groupBox2.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.orderlinesBindingSource)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.otherItemsBindingSource)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.simpleClassesBindingSource)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
 
@@ -639,44 +624,32 @@ partial class MainForm
 
     private System.Windows.Forms.GroupBox groupBox1;
 
-    private UI.ObjectBindingSource.ObjectBindingSource  ordersBindingSource;
+    private UI.ObjectBindingSource.ObjectBindingSource ordersBindingSource;
     private UI.ObjectBindingSource.ObjectBindingSource orderlinesBindingSource;
     private System.Windows.Forms.DataGridView dataGridView1;
     private UI.ObjectBindingSource.ObjectBindingSource customersBindingSource;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn3;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn4;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn5;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn6;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn7;
     private UI.ObjectBindingSource.ObjectBindingSource productsBindingSource;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn8;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn9;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn10;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn11;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn12;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn13;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn14;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn15;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn16;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn17;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn18;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn19;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.DataGridView dataGridView2;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn20;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn21;
-    private System.Windows.Forms.Button btnChange2;
-    private System.Windows.Forms.Button btnDeleteAll;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn22;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn23;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn24;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn25;
-    private System.Windows.Forms.Button btnChange1;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn26;
+    private System.Windows.Forms.Button btnChanges;
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Label label1;
+    private UI.ObjectBindingSource.ObjectBindingSource otherItemsBindingSource;
+    private UI.ObjectBindingSource.ObjectBindingSource simpleClassesBindingSource;
+    private System.Windows.Forms.ComboBox comboBox1;
+    private System.Windows.Forms.ComboBox comboBox2;
+    private System.Windows.Forms.Button btnGC;
+    private System.Windows.Forms.ComboBox cbAction;
+    private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.Button btnObjectsAlive;
+    private System.Windows.Forms.Button btnShowOBS;
+    private System.Windows.Forms.CheckBox ChkConsiderChildsOnlyInCurrent;
+    private System.Windows.Forms.CheckBox chkAutoCreateObjects;
+    private System.Windows.Forms.CheckBox chkNotifyChangesChildLists;
+    private System.Windows.Forms.CheckBox ChkConsiderChildsOnlyInCurrent2;
+    private System.Windows.Forms.CheckBox chkAutoCreateObjects2;
+    private System.Windows.Forms.CheckBox chkNotifyChangesChildLists2;
+    private System.Windows.Forms.CheckBox chkConsiderOnlyDetails;
     private System.Windows.Forms.DataGridViewTextBoxColumn orderNumberDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewComboBoxColumn Customer;
     private System.Windows.Forms.DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
@@ -685,16 +658,15 @@ partial class MainForm
     private System.Windows.Forms.DataGridViewTextBoxColumn customerBillingAddressCityDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn deliveryAddressStreetAddressDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn deliveryAddressCityDataGridViewTextBoxColumn;
-    private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn27;
     private System.Windows.Forms.DataGridViewComboBoxColumn Product;
     private System.Windows.Forms.DataGridViewTextBoxColumn productDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn productProductIdDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_UnitPrice;
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
-    private System.Windows.Forms.DataGridViewComboBoxColumn Product_Type;
-    private System.Windows.Forms.Button btnDeleteCustomer;
-    
+    private System.Windows.Forms.Button btnHookedObjects;
+    private System.Windows.Forms.Label lblDebugFile;
+
 
 }
 

@@ -69,6 +69,11 @@ public class Order : BusinessBase
     public List<OrderLine> OrderLines
     {
         get { return _orderLines; }
+        set 
+        {
+            _orderLines = value;
+            OnPropertyChanged("OrderLines");
+        }
     }
 
     public override string ToString()

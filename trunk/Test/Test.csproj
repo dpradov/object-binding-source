@@ -66,18 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="BusinessBase.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Customer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -95,9 +89,10 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="DomainModel.cd" />
+    <None Include="Properties\DataSources\Class1.datasource" />
     <None Include="Properties\DataSources\Customer.datasource" />
     <None Include="Properties\DataSources\Order.datasource" />
+    <None Include="Properties\DataSources\OtherItem.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -113,6 +108,10 @@
     <ProjectReference Include="..\ObjectBindingSource\ObjectBindingSource.vbproj">
       <Project>{B63DB1AD-D562-4086-AEAE-F3C8C4AD0267}</Project>
       <Name>ObjectBindingSource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test_Domain\Test_Domain.csproj">
+      <Project>{1031A570-5FC4-4A51-B8DD-01B1AC5F45B6}</Project>
+      <Name>Test_Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\UtilesC\UtilesC.csproj">
       <Project>{6490CB19-D951-45E3-A16B-512BEDB8023B}</Project>

@@ -10,7 +10,7 @@ Imports System.ComponentModel
 '# The modifications made by Daniel Prado Velasco (<dpradov@gmail.com>) are licensed under MIT License
 '# included in the file LICENSE.txt, with the prevalence of the restrictions that the original license
 '# could impose.
-'# Changes to the original class includes:
+'# Changes to the original class includes, among others:
 '#  - New event: CreatingObject, raised from the method 'GetNestedObjectInstance', that has been changed from 
 '#    <private share> to <protected friend>
 '#  - Added new method: GetNestedObjectsInstances
@@ -55,6 +55,12 @@ Public Class CustomPropertyDescriptor
 
 #End Region
 
+    Public ReadOnly Property PropertyPath() As String
+        Get
+            Return _propertyPath
+        End Get
+    End Property
+
     Public Overrides Function CanResetValue(ByVal component As Object) As Boolean        
         Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, False)
         If instance IsNot Nothing Then
@@ -82,18 +88,13 @@ Public Class CustomPropertyDescriptor
     ''' <param name="component">The component with the property for which to retrieve the value.</param>
     ''' <returns>The value of a property for a given component.</returns>
     Public Overrides Function GetValue(ByVal component As Object) As Object
-        Try
+        If component Is Nothing Then Return Nothing
 
-            Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, False)
-            If instance IsNot Nothing Then
-                Return DynamicAccessorFactory.GetDynamicAccessor(instance.GetType).GetPropertyValue(instance, _originalPropertyDescriptor.Name)
-            End If
-            Return Nothing
-
-        Catch ex As Exception
-            DBG.Foo(DBG_ChkNivel(0) AndAlso DBG.Log(0, String.Format("ERROR on CustomPropertyDescriptor.GetValue: {0}", DBG.MensajeError(ex))))
-            Return Nothing
-        End Try
+        Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, False)
+        If instance IsNot Nothing Then
+            Return DynamicAccessorFactory.GetDynamicAccessor(instance.GetType).GetPropertyValue(instance, _originalPropertyDescriptor.Name)
+        End If
+        Return Nothing
     End Function
 
     ''' <summary>
@@ -102,6 +103,8 @@ Public Class CustomPropertyDescriptor
     ''' <param name="component">The component with the property value that is to be set.</param>
     ''' <param name="value">The new value.</param>
     Public Overrides Sub SetValue(ByVal component As Object, ByVal value As Object)
+        If component Is Nothing Then Exit Sub
+
         Dim instance As Object = GetNestedObjectInstance(component, _propertyPath, _autoCreateObjects)
         If instance IsNot Nothing Then
             DynamicAccessorFactory.GetDynamicAccessor(instance.GetType).SetPropertyValue(instance, _originalPropertyDescriptor.Name, value)
@@ -177,7 +180,6 @@ Public Class CustomPropertyDescriptor
         Return False
     End Function
 
-
     ''' <summary>
     ''' It returns the relation of objects associated with each of the properties included in the specified path
     ''' for the root object provided ('component' parameter), not including the ends.
@@ -191,12 +193,27 @@ Public Class CustomPropertyDescriptor
     ''' <remarks>
     ''' The list of objects may not reach the last property of the specified path if any of these returns null.
     ''' </remarks>
-    Protected Friend Shared Sub GetNestedObjectsInstances(ByVal component As Object, ByVal propertyPath As String, ByVal nestedObjects As List(Of Object))
-        Dim propertyName As String
+    Protected Friend Shared Function GetNestedObjectsInstances(ByVal component As Object, ByVal propertyPath As String) As Object()
+        Dim nestedObjects = New ArrayList
 
-        If nestedObjects Is Nothing Then
-            nestedObjects = New List(Of Object)
-        End If
+        _GetNestedObjectsInstances(component, propertyPath, nestedObjects)
+        Return nestedObjects.ToArray
+    End Function
+
+
+    ''' <summary>
+    ''' It returns the relation of objects associated with each of the properties included in the specified path
+    ''' for the root object provided ('component' parameter), not including the ends.
+    ''' The order of the returned objects will be the same as that of the properties in the path provided.
+    ''' The first of these objects corresponds to the first property on the path over the root object (component),
+    ''' the second object corresponds to the resulting of applying the second property to the previous object, 
+    ''' and so on.
+    ''' </summary>
+    ''' <remarks>
+    ''' The list of objects may not reach the last property of the specified path if any of these returns null.
+    ''' </remarks>
+    Private Shared Sub _GetNestedObjectsInstances(ByVal component As Object, ByVal propertyPath As String, ByVal nestedObjects As ArrayList)
+        Dim propertyName As String
 
         If propertyPath.Contains(".") Then
             propertyName = propertyPath.Substring(0, propertyPath.IndexOf("."))
@@ -205,7 +222,7 @@ Public Class CustomPropertyDescriptor
             Dim value As Object = dynamicAccessor.GetPropertyValue(component, propertyName)
             nestedObjects.Add(value)
             If value IsNot Nothing Then
-                GetNestedObjectsInstances(value, propertyPath.Substring((propertyPath.IndexOf(".") + 1)), nestedObjects)
+                _GetNestedObjectsInstances(value, propertyPath.Substring((propertyPath.IndexOf(".") + 1)), nestedObjects)
             End If
         End If
 

@@ -6,7 +6,7 @@ public class OrderLine : BusinessBase
 {
     private Product _product;
     private int _quantity;
-
+    private List<DetailOrderLine> _details = new List<DetailOrderLine>();
 
     public OrderLine()
     {
@@ -37,6 +37,16 @@ public class OrderLine : BusinessBase
             _quantity = value;
             OnPropertyChanged("Quantity");
         }
+    }
+
+    public List<DetailOrderLine> Details
+    {
+        get { return _details; }
+    }
+
+    public List<DetailOrderLine> OtherDetails
+    {
+        get { return _details; }
     }
 
     public override string ToString()

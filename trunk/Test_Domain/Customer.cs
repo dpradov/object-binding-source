@@ -7,6 +7,8 @@ public class Customer : BusinessBase
     private int _customerId;
     private string _name;
     private Address _address;
+    private int _age;
+    private Product _favoriteProduct;
 
 
     public Customer()
@@ -49,6 +51,26 @@ public class Customer : BusinessBase
         {
             _address = value;
             OnPropertyChanged("BillingAddress");
+        }
+    }
+
+    public int Age
+    {
+        get { return _age; }
+        set
+        {
+            _age = value;
+            OnPropertyChanged("Age");
+        }
+    }
+
+    public Product FavoriteProduct
+    {
+        get { return _favoriteProduct; }
+        set
+        {
+            _favoriteProduct = value;
+            OnPropertyChanged("FavoriteProduct");
         }
     }
 

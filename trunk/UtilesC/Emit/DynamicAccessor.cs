@@ -110,7 +110,11 @@ internal sealed class DynamicAccessor : IDynamicAccessor
     {
         if (!_propertySetters.ContainsKey(propertyName))
         {
-            _propertySetters.Add(propertyName, DynamicMethodCompiler.CreateSetHandler(_type, _type.GetProperty(propertyName)));
+            PropertyInfo propInfo = _type.GetProperty(propertyName, new Type[0]);
+            if (propInfo == null)
+                throw new ArgumentOutOfRangeException(propertyName, "Unable to find propertyName");
+
+            _propertySetters.Add(propertyName, DynamicMethodCompiler.CreateSetHandler(_type, propInfo));
         }
     }
 
@@ -118,7 +122,10 @@ internal sealed class DynamicAccessor : IDynamicAccessor
     {
         if (!_propertyGetters.ContainsKey(propertyName))
         {
-            _propertyGetters.Add(propertyName, DynamicMethodCompiler.CreateGetHandler(_type, _type.GetProperty(propertyName)));
+            PropertyInfo propInfo =  _type.GetProperty(propertyName, new Type[0]);
+            if (propInfo == null)
+                throw new ArgumentOutOfRangeException (propertyName, "Unable to find propertyName");
+            _propertyGetters.Add(propertyName, DynamicMethodCompiler.CreateGetHandler(_type, propInfo));
         }
     }
     private void ValidateFieldGetter(string fieldName)
