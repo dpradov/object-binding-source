@@ -126,7 +126,6 @@ Public Class ObjectBindingSource
     Private _propertyDescriptors As PropertyDescriptorCollection
 
     Private _iFirstNestedProperty As Integer = -99        ' -1:  There is no nested property   < -1: Not calculated yet
-    Private _iNonNestedPropertiesToSupervise As Integer()
 
 
     ' _TypesInNestedProperties:
@@ -268,6 +267,38 @@ Public Class ObjectBindingSource
 
 #End If
 
+    ''' <summary>
+    ''' Indicates if the component must offer additional support for changes in properties. Base BindingSource communicate changes in properties of items
+    ''' of the datasource list (if that items implements INotifyPropertyChanged). If it is necessary to notify changes in other properties, such as nested
+    ''' properties then this property, 'NotifyPropertyChanges' must be set to True. [Default: False]
+    ''' </summary>
+    ''' <remarks>
+    ''' If set to True then many objects will be hooked to its PropertyChanged event. If this is not necessary then keeping to False will avoid having
+    ''' to inspect certain properties of the datasource objects. If the datasource list has properties expensive to obtain, this way we will avoid that
+    ''' calculation, unless needed.
+    ''' </remarks>
+    <Category("Data")> _
+    <Description("Indicates if the component must offer additional support for changes in properties, through the event PropertyChanged of nested objects.")> _
+    Public Property NotifyPropertyChanges() As Boolean
+        Get
+            Return _NotifyPropertyChanges
+        End Get
+        Set(ByVal value As Boolean)
+            If value <> _NotifyPropertyChanges Then
+                If Not value And IsInitialized() Then
+                    UnwireObjects(True)
+                End If
+                _NotifyPropertyChanges = value
+
+                If IsInitialized() Then
+                    Reconfigure(True, True)
+                End If
+            End If
+        End Set
+    End Property
+    Private _NotifyPropertyChanges As Boolean = False
+
+
     Private Function NestedPropertiesDefined() As Boolean
         Return (_BindableNestedProperties IsNot Nothing) AndAlso (_BindableNestedProperties.Length > 0)
     End Function
@@ -350,7 +381,7 @@ Public Class ObjectBindingSource
             End If
 
             PopulateTypesInNestedProperties()
-            PopulateNonNestedPropertiesToSupervise()
+            CheckNonNestedPropertiesToSupervise()
             CheckChildListsToConsider()
             PopulateAssociatedOBS()
             FillPropertyNamesInNestedPaths()
@@ -358,7 +389,7 @@ Public Class ObjectBindingSource
             DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] CreatePropertyDescriptors - END", ID)))
 
         Else
-            PopulateNonNestedPropertiesToSupervise()
+            CheckNonNestedPropertiesToSupervise()
             _iFirstNestedProperty = -1
         End If
 
@@ -445,7 +476,7 @@ Public Class ObjectBindingSource
     End Function
 
     Private Function ConsiderNonNestedProperties() As Boolean
-        Return (_iNonNestedPropertiesToSupervise IsNot Nothing AndAlso _iNonNestedPropertiesToSupervise.Length > 0)
+        Return (_NonNestedPropertiesToSupervise IsNot Nothing AndAlso _NonNestedPropertiesToSupervise.Length > 0)
     End Function
 
 
@@ -493,14 +524,66 @@ Public Class ObjectBindingSource
 
     End Sub
 
-    Private Sub PopulateNonNestedPropertiesToSupervise()
-        Dim iProperties As New List(Of Integer)
-        For i = 0 To IndexLastNonNestedProperty()
-            If GetType(INotifyPropertyChanged).IsAssignableFrom(_propertyDescriptors(i).PropertyType) Then
-                iProperties.Add(i)
+    ''' <summary>
+    ''' Gets or sets non nested properties (implementing INotifyPropertyChanged) that must be listened 
+    ''' in order to detect changes in its properties.
+    ''' </summary>
+    ''' <remarks>
+    ''' This could be interesting when those properties could be used in controls like combo, and the modification of one of their properties 
+    ''' could affect the value showed as display member.
+    ''' Only non nested properties implementing INotifyPropertyChanged that are explicitly defined here will be considered. Otherwise, 
+    ''' perhaps many properties should be queried at propertyChanged events, and ocassionally the queries could be expensive.
+    ''' </remarks>
+    <Category("Data")> _
+    <Description("Gets or sets non nested properties (implementing INotifyPropertyChanged) that must be listened " + _
+                 "in order to detect changes in its properties.")> _
+    Public Property NonNestedPropertiesToSupervise() As String()
+        Get
+            Return _NonNestedPropertiesToSupervise
+        End Get
+        Set(ByVal value As String())
+            If IsInitialized() Then
+                UnwireObjects(False)
+            End If
+
+            If value IsNot Nothing AndAlso value.Length = 0 Then
+                value = Nothing
+            End If
+            _NonNestedPropertiesToSupervise = value
+
+
+            If IsInitialized() Then
+                If _NotifyPropertyChanges Then
+                    Reconfigure(False, True)
+                Else
+                    If Me.DesignMode Then CheckNonNestedPropertiesToSupervise()
+                End If
+            End If
+        End Set
+    End Property
+    Private _NonNestedPropertiesToSupervise As String() = Nothing
+
+
+    Private Sub CheckNonNestedPropertiesToSupervise()
+        If _NonNestedPropertiesToSupervise Is Nothing OrElse MyBase.DataSource Is Nothing Then Exit Sub
+
+        Dim auxList As New List(Of String)
+
+        For Each nnProp In _NonNestedPropertiesToSupervise
+            Dim prop = _propertyDescriptors.Find(nnProp, True)
+            If prop Is Nothing OrElse Not GetType(INotifyPropertyChanged).IsAssignableFrom(prop.PropertyType) Then
+                Dim cadErr = String.Format("[{0}] ERROR setting NonNestedPropertiesToSupervise: '{1}' is not a valid property (It will be ignored)", ID, nnProp)
+                DBG.Foo(DBG_ChkNivel(0) AndAlso DBG.Log(0, cadErr))
+                If Me.DesignMode Then
+                    MsgBox(cadErr, MsgBoxStyle.Exclamation, "ObjectBindingSource")
+                    auxList.Add(nnProp)
+                End If
+            Else
+                auxList.Add(prop.Name)
             End If
         Next
-        _iNonNestedPropertiesToSupervise = iProperties.ToArray
+
+        _NonNestedPropertiesToSupervise = auxList.ToArray
     End Sub
 
 
@@ -519,7 +602,6 @@ Public Class ObjectBindingSource
         UnwireObjects(True)
 
         _InnerList = MyBase.List
-        _currentItem = Nothing
 
 
         If TypeOf List Is IRaiseItemChangedEvents Then
@@ -531,6 +613,10 @@ Public Class ObjectBindingSource
         If _InnerList Is Nothing OrElse _InnerList.Count = 0 Then
             Exit Sub
         End If
+
+        If Not NotifyPropertyChanges Then Exit Sub
+
+
 
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] WireObjects  - BEGIN", ID)))
 
@@ -607,11 +693,11 @@ Public Class ObjectBindingSource
         End If
 
         If ConsiderNonNestedProperties() Then
-            Dim ObjInNonNestedPropertiesToSupervise(_iNonNestedPropertiesToSupervise.Length - 1) As Object
+            Dim ObjInNonNestedPropertiesToSupervise(_NonNestedPropertiesToSupervise.Length - 1) As Object
 
             Dim k = 0
-            For Each iProp In _iNonNestedPropertiesToSupervise
-                Dim Obj = TryCast(_propertyDescriptors(iProp).GetValue(objRow), INotifyPropertyChanged)
+            For Each prop In _NonNestedPropertiesToSupervise
+                Dim Obj = TryCast(_propertyDescriptors(prop).GetValue(objRow), INotifyPropertyChanged)
                 If Obj IsNot Nothing And (Obj IsNot objRow) Then     ' Obj IsNot objRow -> Ignoramos propiedades tipo Self
                     RemoveHandler Obj.PropertyChanged, AddressOf NestedObject_PropertyChanged
                     AddHandler Obj.PropertyChanged, AddressOf NestedObject_PropertyChanged
@@ -639,7 +725,7 @@ Public Class ObjectBindingSource
 
 
     Private Sub UnwireObjects(ByVal PreservePropertyDescriptors As Boolean)
-        If _InnerList Is Nothing Then Exit Sub
+        If _InnerList Is Nothing Or Not NotifyPropertyChanges Then Exit Sub
 
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] UnhookObjects - BEGIN", ID)))
 
@@ -733,9 +819,9 @@ Public Class ObjectBindingSource
             If ConsiderNonNestedProperties() Then
                 Dim obs = _HookedObjects(row).ObjInProperties(i).Objects
                 i = 0
-                For Each j In _iNonNestedPropertiesToSupervise
+                For Each prop In _NonNestedPropertiesToSupervise
                     If obs(i) IsNot Nothing And obs(i) IsNot _HookedObjects(row).ObjRow Then
-                        DBG.Log(0, String.Format("NonNested Prop: '{0}' -> {1}", _propertyDescriptors(j).Name, obs(i)), 2)
+                        DBG.Log(0, String.Format("NonNested Prop: '{0}' -> {1}", _propertyDescriptors(prop).Name, obs(i)), 2)
                     End If
                     i += 1
                 Next
@@ -1076,25 +1162,27 @@ Public Class ObjectBindingSource
             ' De hecho podría no estarse utilizando ninguna propiedad anidada. En ese caso si hemos entrado aquí será porque nos hemos subscrito
             ' a PropertyChanged para determinados objetos, en propiedades no anidadas y que implementan INotifyPropertyChanged 
             '----------------------------------------------------
-            Dim iProperties As New List(Of Integer)
-            For Each i In _iNonNestedPropertiesToSupervise
-                If _propertyDescriptors(i).PropertyType.IsAssignableFrom(objType) Then
-                    iProperties.Add(i)
-                End If
-            Next
-
-            If iProperties.Count > 0 Then
-                For RowIndex = 0 To MyBase.List.Count - 1
-                    If rowsAffected.Contains(RowIndex) Then Continue For ' Ya se ha informado de cambios en esta fila
-                    For Each i In iProperties
-                        If sender Is _propertyDescriptors(i).GetValue(MyBase.List(RowIndex)) Then
-                            DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] => MyBase.OnListChanged: Row:{1} (Change in object of non nested property:{2})", ID, RowIndex, _propertyDescriptors(i).Name), 2))
-                            rowsAffected.Add(RowIndex)
-                            MyBase.OnListChanged(New ListChangedEventArgs(ListChangedType.ItemChanged, RowIndex))
-                            Exit For      ' Ya hemos indicado que ha cambiado esa fila. No es necesario seguir buscando otras propiedades
-                        End If
-                    Next
+            If ConsiderNonNestedProperties() Then
+                Dim Properties As New List(Of String)
+                For Each prop In _NonNestedPropertiesToSupervise
+                    If _propertyDescriptors(prop).PropertyType.IsAssignableFrom(objType) Then
+                        Properties.Add(prop)
+                    End If
                 Next
+
+                If Properties.Count > 0 Then
+                    For RowIndex = 0 To MyBase.List.Count - 1
+                        If rowsAffected.Contains(RowIndex) Then Continue For ' Ya se ha informado de cambios en esta fila
+                        For Each prop In Properties
+                            If sender Is _propertyDescriptors(prop).GetValue(MyBase.List(RowIndex)) Then
+                                DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] => MyBase.OnListChanged: Row:{1} (Change in object of non nested property:{2})", ID, RowIndex, prop), 2))
+                                rowsAffected.Add(RowIndex)
+                                MyBase.OnListChanged(New ListChangedEventArgs(ListChangedType.ItemChanged, RowIndex))
+                                Exit For      ' Ya hemos indicado que ha cambiado esa fila. No es necesario seguir buscando otras propiedades
+                            End If
+                        Next
+                    Next
+                End If
             End If
 
         Catch ex As Exception
@@ -1107,22 +1195,26 @@ Public Class ObjectBindingSource
     Protected Overrides Sub OnListChanged(ByVal E As ListChangedEventArgs)
         Select Case E.ListChangedType
             Case ListChangedType.ItemChanged
-                DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] OnListChanged [ItemChanged]: {1}", ID, E.NewIndex)))
-                ItemChanged(E.NewIndex, MyBase.List(E.NewIndex), Nothing, True)
+                If NotifyPropertyChanges Then
+                    DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] OnListChanged [ItemChanged]: {1}", ID, E.NewIndex)))
+                    ItemChanged(E.NewIndex, MyBase.List(E.NewIndex), Nothing, True)
+                End If
 
             Case ListChangedType.ItemDeleted
-                DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] OnListChanged [ItemDeleted]: {1}", ID, E.NewIndex)))
-                If _iFirstNestedProperty >= 0 AndAlso _HookedObjects IsNot Nothing AndAlso _HookedObjects.Count > E.NewIndex Then
-                    Dim ItemDeleted = _HookedObjects(E.NewIndex).ObjRow
-                    UnhookObjectsInRow(E.NewIndex, True)
+                If NotifyPropertyChanges Then
+                    DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] OnListChanged [ItemDeleted]: {1}", ID, E.NewIndex)))
+                    If (_iFirstNestedProperty >= 0 Or ConsiderNonNestedProperties()) AndAlso _HookedObjects IsNot Nothing AndAlso _HookedObjects.Count > E.NewIndex Then
+                        Dim ItemDeleted = _HookedObjects(E.NewIndex).ObjRow
+                        UnhookObjectsInRow(E.NewIndex, True)
 
-                    If NotifyChangesInNestedPropertiesFromChildlists Then
-                        RemoveNestedBindingSources(ItemDeleted)
+                        If NotifyChangesInNestedPropertiesFromChildlists Then
+                            RemoveNestedBindingSources(ItemDeleted)
+                        End If
                     End If
                 End If
 
             Case ListChangedType.ItemAdded
-                If E.NewIndex <= MyBase.Count - 1 Then
+                If NotifyPropertyChanges AndAlso E.NewIndex <= MyBase.Count - 1 Then
                     Dim ItemAdded = MyBase.List(E.NewIndex)
                     DBG.Foo(DBG_ChkNivel(2) AndAlso DBG.Log(2, String.Format("[{0}] OnListChanged [ItemAdded]: {1}", ID, ItemAdded)))
                     If Not IsConfigured() Then
@@ -1219,13 +1311,15 @@ Public Class ObjectBindingSource
         Dim oldCurrent = _currentItem
         _currentItem = MyBase.Current
 
-        If Not IsConfigured() Then
-            WireObjects()
+        If NotifyPropertyChanges Then
+            If Not IsConfigured() Then
+                WireObjects()
 
-        Else
-            If NotifyChangesInNestedPropertiesFromChildlists And ConsiderChildsOnlyInCurrent Then
-                RemoveNestedBindingSources(oldCurrent)
-                CreateNestedBindingSources(_currentItem)
+            Else
+                If NotifyChangesInNestedPropertiesFromChildlists And ConsiderChildsOnlyInCurrent Then
+                    RemoveNestedBindingSources(oldCurrent)
+                    CreateNestedBindingSources(_currentItem)
+                End If
             End If
         End If
 
@@ -1308,7 +1402,7 @@ Public Class ObjectBindingSource
 
             If IsInitialized() Then
                 PopulateAssociatedOBS()
-                If NotifyChangesInNestedPropertiesFromChildlists Then
+                If NotifyPropertyChanges And NotifyChangesInNestedPropertiesFromChildlists Then
                     CreateNestedBindingSources()
                 End If
             End If
@@ -1371,7 +1465,7 @@ Public Class ObjectBindingSource
 
 
     Private Sub CreateNestedBindingSources()
-        If _AssociatedOBS Is Nothing Then Exit Sub
+        If _AssociatedOBS Is Nothing Or Not NotifyPropertyChanges Then Exit Sub
 
         If ConsiderChildsOnlyInCurrent Then
             CreateNestedBindingSources(_currentItem)
@@ -1383,7 +1477,7 @@ Public Class ObjectBindingSource
     End Sub
 
     Private Sub CreateNestedBindingSources(ByVal objRow As Object, Optional ByVal propDesc As PropertyDescriptor = Nothing)
-        If objRow Is Nothing Or _AssociatedOBS Is Nothing Then Exit Sub
+        If objRow Is Nothing Or _AssociatedOBS Is Nothing Or Not NotifyPropertyChanges Then Exit Sub
 
         DBG.Foo(DBG_ChkNivel(1) AndAlso DBG.Log(1, String.Format("[{0}] CreateNestedBindingSources: {1}", ID, objRow)))
 
@@ -1413,6 +1507,8 @@ Public Class ObjectBindingSource
                     .RelatedObjectBindingSources = refOBS.RelatedObjectBindingSources
                     .ChildListsToConsider = refOBS.ChildListsToConsider
                     .ConsiderChildsOnlyInCurrent = refOBS.ConsiderChildsOnlyInCurrent
+                    .NotifyPropertyChanges = refOBS.NotifyPropertyChanges
+                    .NonNestedPropertiesToSupervise = refOBS.NonNestedPropertiesToSupervise
                     .DataSource = list
                 End With
                 DirectCast(oBS, ISupportInitialize).EndInit()
@@ -1479,13 +1575,17 @@ Public Class ObjectBindingSource
             End If
             _ChildListsToConsider = value
 
-            If NotifyChangesInNestedPropertiesFromChildlists And IsInitialized() Then
-                Reconfigure(False, True)
+            If IsInitialized() Then
+                If NotifyPropertyChanges And NotifyChangesInNestedPropertiesFromChildlists Then
+                    Reconfigure(False, True)
+                Else
+                    If Me.DesignMode Then CheckChildListsToConsider()
+                End If
             End If
-
         End Set
     End Property
     Private _ChildListsToConsider As String() = Nothing
+
 
     Private Sub CheckChildListsToConsider()
         If _ChildListsToConsider Is Nothing Then Exit Sub
@@ -1532,7 +1632,7 @@ Public Class ObjectBindingSource
 
             _ConsiderChildsOnlyInCurrent = value
 
-            If _NotifyChangesFromChildLists And IsInitialized() Then
+            If _NotifyPropertyChanges And _NotifyChangesFromChildLists And IsInitialized() Then
                 CreatePropertyDescriptors()
                 WireObjects(True)
                 OnListChanged(New ListChangedEventArgs(ListChangedType.PropertyDescriptorChanged, 0))
