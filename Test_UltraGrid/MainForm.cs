@@ -374,6 +374,17 @@ public partial class MainForm : Form
                     Orders[0].OrderLines = Orders[1].OrderLines;
                     break;
 
+                case "25":   // MOD orderlinesBindingSource.BindableNestedProperties: B
+                    orderlinesBindingSource.BindableNestedProperties = new string[] {
+                            "Product.ProductId",
+                            "Product.UnitPrice",
+                            "Product.Name"};
+                    break;
+
+                case "26":   // MOD orderlinesBindingSource.BindableNestedProperties: C
+                    orderlinesBindingSource.BindableNestedProperties = null;
+                    break;
+
                 default:
                     break;
             }
@@ -418,6 +429,17 @@ public partial class MainForm : Form
         ShowObjectsAlive();
     }
 
+    private void chkNotifyPropertyChanges_CheckedChanged(object sender, EventArgs e)
+    {
+        ordersBindingSource.NotifyPropertyChanges = chkNotifyPropertyChanges.Checked;
+    }
+
+    private void chkNotifyPropertyChanges2_CheckedChanged(object sender, EventArgs e)
+    {
+        ordersBindingSource_2.NotifyPropertyChanges = chkNotifyPropertyChanges2.Checked;
+    }
+
+
     private void chkAutoCreateObjects_CheckedChanged(object sender, EventArgs e)
     {
         ordersBindingSource.AutoCreateObjects = chkAutoCreateObjects.Checked;
@@ -458,6 +480,14 @@ public partial class MainForm : Form
             orderlinesBindingSource.ChildListsToConsider = new string[] { "Details" };
         else
             orderlinesBindingSource.ChildListsToConsider = null;
+    }
+
+    private void chkConsiderNonNested_Product_CheckedChanged(object sender, EventArgs e)
+    {
+        if (chkConsiderNonNested_Product.Checked)
+            orderlinesBindingSource.NonNestedPropertiesToSupervise = new string[] { "Product" };
+        else
+            orderlinesBindingSource.NonNestedPropertiesToSupervise = null;
     }
 
 

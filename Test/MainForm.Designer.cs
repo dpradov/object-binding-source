@@ -27,9 +27,10 @@ partial class MainForm
     private void InitializeComponent()
     {
         this.components = new System.ComponentModel.Container();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
+        this.chkNotifyPropertyChanges = new System.Windows.Forms.CheckBox();
         this.ChkConsiderChildsOnlyInCurrent = new System.Windows.Forms.CheckBox();
         this.chkAutoCreateObjects = new System.Windows.Forms.CheckBox();
         this.chkNotifyChangesChildLists = new System.Windows.Forms.CheckBox();
@@ -45,6 +46,7 @@ partial class MainForm
         this.deliveryAddressCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.ordersBindingSource = new UI.ObjectBindingSource.ObjectBindingSource(this.components);
         this.groupBox2 = new System.Windows.Forms.GroupBox();
+        this.chkNotifyPropertyChanges2 = new System.Windows.Forms.CheckBox();
         this.ChkConsiderChildsOnlyInCurrent2 = new System.Windows.Forms.CheckBox();
         this.chkAutoCreateObjects2 = new System.Windows.Forms.CheckBox();
         this.chkNotifyChangesChildLists2 = new System.Windows.Forms.CheckBox();
@@ -67,11 +69,12 @@ partial class MainForm
         this.btnGC = new System.Windows.Forms.Button();
         this.cbAction = new System.Windows.Forms.ComboBox();
         this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+        this.chkConsiderNonNested_Product = new System.Windows.Forms.CheckBox();
         this.btnObjectsAlive = new System.Windows.Forms.Button();
         this.btnShowOBS = new System.Windows.Forms.Button();
-        this.chkConsiderOnlyDetails = new System.Windows.Forms.CheckBox();
         this.btnHookedObjects = new System.Windows.Forms.Button();
         this.lblDebugFile = new System.Windows.Forms.Label();
+        this.chkConsiderOnlyDetails = new System.Windows.Forms.CheckBox();
         this.groupBox1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -88,6 +91,7 @@ partial class MainForm
         // 
         this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                     | System.Windows.Forms.AnchorStyles.Right)));
+        this.groupBox1.Controls.Add(this.chkNotifyPropertyChanges);
         this.groupBox1.Controls.Add(this.ChkConsiderChildsOnlyInCurrent);
         this.groupBox1.Controls.Add(this.chkAutoCreateObjects);
         this.groupBox1.Controls.Add(this.chkNotifyChangesChildLists);
@@ -98,6 +102,20 @@ partial class MainForm
         this.groupBox1.TabIndex = 2;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "Orders";
+        // 
+        // chkNotifyPropertyChanges
+        // 
+        this.chkNotifyPropertyChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.chkNotifyPropertyChanges.AutoSize = true;
+        this.chkNotifyPropertyChanges.Checked = true;
+        this.chkNotifyPropertyChanges.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkNotifyPropertyChanges.Location = new System.Drawing.Point(823, 215);
+        this.chkNotifyPropertyChanges.Name = "chkNotifyPropertyChanges";
+        this.chkNotifyPropertyChanges.Size = new System.Drawing.Size(134, 17);
+        this.chkNotifyPropertyChanges.TabIndex = 31;
+        this.chkNotifyPropertyChanges.Text = "NotifyPropertyChanges";
+        this.chkNotifyPropertyChanges.UseVisualStyleBackColor = true;
+        this.chkNotifyPropertyChanges.CheckedChanged += new System.EventHandler(this.chkNotifyPropertyChanges_CheckedChanged);
         // 
         // ChkConsiderChildsOnlyInCurrent
         // 
@@ -146,12 +164,12 @@ partial class MainForm
                     | System.Windows.Forms.AnchorStyles.Right)));
         this.dataGridView1.AutoGenerateColumns = false;
         this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-        dataGridViewCellStyle1.BackColor = System.Drawing.Color.NavajoWhite;
-        dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-        dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-        this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+        dataGridViewCellStyle3.BackColor = System.Drawing.Color.NavajoWhite;
+        dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+        dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+        dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+        this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
         this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderNumberDataGridViewTextBoxColumn,
@@ -195,7 +213,9 @@ partial class MainForm
         this.customersBindingSource.ChildListsToConsider = null;
         this.customersBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.customersBindingSource.DataSource = typeof(Customer);
+        this.customersBindingSource.NonNestedPropertiesToSupervise = null;
         this.customersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.customersBindingSource.NotifyPropertyChanges = true;
         this.customersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // orderDateDataGridViewTextBoxColumn
@@ -251,7 +271,9 @@ partial class MainForm
         this.ordersBindingSource.ChildListsToConsider = null;
         this.ordersBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.ordersBindingSource.DataSource = typeof(Order);
+        this.ordersBindingSource.NonNestedPropertiesToSupervise = null;
         this.ordersBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.ordersBindingSource.NotifyPropertyChanges = true;
         this.ordersBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         this.ordersBindingSource.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_CreatingObject);
         this.ordersBindingSource.NestedError += new UI.ObjectBindingSource.ObjectBindingSource.NestedErrorEventHandler(this.ordersBindingSource_NestedError);
@@ -261,6 +283,7 @@ partial class MainForm
         this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                     | System.Windows.Forms.AnchorStyles.Left)
                     | System.Windows.Forms.AnchorStyles.Right)));
+        this.groupBox2.Controls.Add(this.chkNotifyPropertyChanges2);
         this.groupBox2.Controls.Add(this.ChkConsiderChildsOnlyInCurrent2);
         this.groupBox2.Controls.Add(this.chkAutoCreateObjects2);
         this.groupBox2.Controls.Add(this.chkNotifyChangesChildLists2);
@@ -271,6 +294,20 @@ partial class MainForm
         this.groupBox2.TabIndex = 3;
         this.groupBox2.TabStop = false;
         this.groupBox2.Text = "Order Lines";
+        // 
+        // chkNotifyPropertyChanges2
+        // 
+        this.chkNotifyPropertyChanges2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        this.chkNotifyPropertyChanges2.AutoSize = true;
+        this.chkNotifyPropertyChanges2.Checked = true;
+        this.chkNotifyPropertyChanges2.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkNotifyPropertyChanges2.Location = new System.Drawing.Point(823, 188);
+        this.chkNotifyPropertyChanges2.Name = "chkNotifyPropertyChanges2";
+        this.chkNotifyPropertyChanges2.Size = new System.Drawing.Size(134, 17);
+        this.chkNotifyPropertyChanges2.TabIndex = 30;
+        this.chkNotifyPropertyChanges2.Text = "NotifyPropertyChanges";
+        this.chkNotifyPropertyChanges2.UseVisualStyleBackColor = true;
+        this.chkNotifyPropertyChanges2.CheckedChanged += new System.EventHandler(this.chkNotifyPropertyChanges2_CheckedChanged);
         // 
         // ChkConsiderChildsOnlyInCurrent2
         // 
@@ -317,14 +354,14 @@ partial class MainForm
                     | System.Windows.Forms.AnchorStyles.Right)));
         this.dataGridView2.AutoGenerateColumns = false;
         this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-        dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle2.BackColor = System.Drawing.Color.NavajoWhite;
-        dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-        dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-        dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+        dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle4.BackColor = System.Drawing.Color.NavajoWhite;
+        dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+        dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+        dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+        dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+        this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
         this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Product,
@@ -360,7 +397,9 @@ partial class MainForm
         this.productsBindingSource.ChildListsToConsider = null;
         this.productsBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.productsBindingSource.DataSource = typeof(Product);
+        this.productsBindingSource.NonNestedPropertiesToSupervise = null;
         this.productsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.productsBindingSource.NotifyPropertyChanges = true;
         this.productsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // productDataGridViewTextBoxColumn
@@ -405,7 +444,9 @@ partial class MainForm
         this.orderlinesBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.orderlinesBindingSource.DataMember = "OrderLines";
         this.orderlinesBindingSource.DataSource = this.ordersBindingSource;
+        this.orderlinesBindingSource.NonNestedPropertiesToSupervise = null;
         this.orderlinesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.orderlinesBindingSource.NotifyPropertyChanges = true;
         this.orderlinesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         this.orderlinesBindingSource.CreatingObject += new UI.ObjectBindingSource.ObjectBindingSource.CreatingObjectEventHandler(this.ordersBindingSource_2_CreatingObject);
         // 
@@ -456,7 +497,9 @@ partial class MainForm
         this.otherItemsBindingSource.ChildListsToConsider = null;
         this.otherItemsBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.otherItemsBindingSource.DataSource = typeof(OtherItem);
+        this.otherItemsBindingSource.NonNestedPropertiesToSupervise = null;
         this.otherItemsBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.otherItemsBindingSource.NotifyPropertyChanges = true;
         this.otherItemsBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // comboBox2
@@ -477,7 +520,9 @@ partial class MainForm
         this.simpleClassesBindingSource.ChildListsToConsider = null;
         this.simpleClassesBindingSource.ConsiderChildsOnlyInCurrent = true;
         this.simpleClassesBindingSource.DataSource = typeof(SimpleClass);
+        this.simpleClassesBindingSource.NonNestedPropertiesToSupervise = null;
         this.simpleClassesBindingSource.NotifyChangesInNestedPropertiesFromChildlists = false;
+        this.simpleClassesBindingSource.NotifyPropertyChanges = true;
         this.simpleClassesBindingSource.RelatedObjectBindingSources = new UI.ObjectBindingSource.ObjectBindingSource[0];
         // 
         // btnGC
@@ -513,9 +558,12 @@ partial class MainForm
             "15: MOD ordersBindingSource.BindableNestedProperties: A",
             "16: MOD ordersBindingSource.BindableNestedProperties: B",
             "17: MOD orderlinesBindingSource.BindableNestedProperties: A",
+            "25: MOD orderlinesBindingSource.BindableNestedProperties: B",
             "--------",
             "23: MOD ordersBindingSource.BindableNestedProperties: C",
             "------",
+            "26: MOD orderlinesBindingSource.BindableNestedProperties: C",
+            "-----",
             "21: Orders[0].OrderLines = Orders[0].OrderLines",
             "22: Orders[0].OrderLines = Orders[1].OrderLines",
             "-----------------",
@@ -527,6 +575,20 @@ partial class MainForm
         this.cbAction.Name = "cbAction";
         this.cbAction.Size = new System.Drawing.Size(443, 21);
         this.cbAction.TabIndex = 13;
+        // 
+        // chkConsiderNonNested_Product
+        // 
+        this.chkConsiderNonNested_Product.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkConsiderNonNested_Product.AutoSize = true;
+        this.chkConsiderNonNested_Product.Location = new System.Drawing.Point(18, 519);
+        this.chkConsiderNonNested_Product.Name = "chkConsiderNonNested_Product";
+        this.chkConsiderNonNested_Product.Size = new System.Drawing.Size(167, 17);
+        this.chkConsiderNonNested_Product.TabIndex = 26;
+        this.chkConsiderNonNested_Product.Text = "Consider non nested \'Product\'";
+        this.toolTip1.SetToolTip(this.chkConsiderNonNested_Product, "To see how it works make sure you select action \'26\' (no nested properties in Ord" +
+                "er Lines grid)");
+        this.chkConsiderNonNested_Product.UseVisualStyleBackColor = true;
+        this.chkConsiderNonNested_Product.CheckedChanged += new System.EventHandler(this.chkConsiderNonNested_Product_CheckedChanged);
         // 
         // btnObjectsAlive
         // 
@@ -548,19 +610,6 @@ partial class MainForm
         this.btnShowOBS.UseVisualStyleBackColor = true;
         this.btnShowOBS.Click += new System.EventHandler(this.btnShowOBS_Click);
         // 
-        // chkConsiderOnlyDetails
-        // 
-        this.chkConsiderOnlyDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        this.chkConsiderOnlyDetails.AutoSize = true;
-        this.chkConsiderOnlyDetails.Checked = true;
-        this.chkConsiderOnlyDetails.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkConsiderOnlyDetails.Location = new System.Drawing.Point(18, 516);
-        this.chkConsiderOnlyDetails.Name = "chkConsiderOnlyDetails";
-        this.chkConsiderOnlyDetails.Size = new System.Drawing.Size(172, 17);
-        this.chkConsiderOnlyDetails.TabIndex = 26;
-        this.chkConsiderOnlyDetails.Text = "ConsiderOnly OrderLine.Details";
-        this.chkConsiderOnlyDetails.UseVisualStyleBackColor = true;
-        // 
         // btnHookedObjects
         // 
         this.btnHookedObjects.Location = new System.Drawing.Point(18, 12);
@@ -580,15 +629,30 @@ partial class MainForm
         this.lblDebugFile.TabIndex = 28;
         this.lblDebugFile.Text = "FILE";
         // 
+        // chkConsiderOnlyDetails
+        // 
+        this.chkConsiderOnlyDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.chkConsiderOnlyDetails.AutoSize = true;
+        this.chkConsiderOnlyDetails.Checked = true;
+        this.chkConsiderOnlyDetails.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkConsiderOnlyDetails.Location = new System.Drawing.Point(18, 501);
+        this.chkConsiderOnlyDetails.Name = "chkConsiderOnlyDetails";
+        this.chkConsiderOnlyDetails.Size = new System.Drawing.Size(172, 17);
+        this.chkConsiderOnlyDetails.TabIndex = 29;
+        this.chkConsiderOnlyDetails.Text = "ConsiderOnly OrderLine.Details";
+        this.chkConsiderOnlyDetails.UseVisualStyleBackColor = true;
+        this.chkConsiderOnlyDetails.CheckedChanged += new System.EventHandler(this.chkConsiderOnlyDetails_CheckedChanged);
+        // 
         // MainForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.BackColor = System.Drawing.Color.WhiteSmoke;
         this.ClientSize = new System.Drawing.Size(992, 545);
+        this.Controls.Add(this.chkConsiderOnlyDetails);
         this.Controls.Add(this.lblDebugFile);
         this.Controls.Add(this.btnHookedObjects);
-        this.Controls.Add(this.chkConsiderOnlyDetails);
+        this.Controls.Add(this.chkConsiderNonNested_Product);
         this.Controls.Add(this.btnShowOBS);
         this.Controls.Add(this.btnObjectsAlive);
         this.Controls.Add(this.cbAction);
@@ -649,7 +713,7 @@ partial class MainForm
     private System.Windows.Forms.CheckBox ChkConsiderChildsOnlyInCurrent2;
     private System.Windows.Forms.CheckBox chkAutoCreateObjects2;
     private System.Windows.Forms.CheckBox chkNotifyChangesChildLists2;
-    private System.Windows.Forms.CheckBox chkConsiderOnlyDetails;
+    private System.Windows.Forms.CheckBox chkConsiderNonNested_Product;
     private System.Windows.Forms.DataGridViewTextBoxColumn orderNumberDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewComboBoxColumn Customer;
     private System.Windows.Forms.DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
@@ -666,6 +730,9 @@ partial class MainForm
     private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
     private System.Windows.Forms.Button btnHookedObjects;
     private System.Windows.Forms.Label lblDebugFile;
+    private System.Windows.Forms.CheckBox chkNotifyPropertyChanges2;
+    private System.Windows.Forms.CheckBox chkNotifyPropertyChanges;
+    private System.Windows.Forms.CheckBox chkConsiderOnlyDetails;
 
 
 }
