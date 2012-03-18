@@ -1,4 +1,19 @@
 -------------------------------------------------------------
+Version: 2.1.0   - date: 18/mar/2012
+
+  * Added new property: *!NotifyPropertyChanges*, that Indicates if the component must offer additional support for changes in properties. Base !BindingSource communicate changes in properties of items of the datasource list (if that items implements INotifyPropertyChanged). If it is necessary to notify changes in other properties, such as nested properties then this property, !NotifyPropertyChanges must be set to True. [Default: False]
+  If set to True then many objects will be hooked to its !PropertyChanged event. If this is not necessary then keeping to False will avoid having to inspect certain properties of the datasource objects. If the datasource list has properties expensive to obtain, this way we will avoid that calculation, unless needed.
+
+  + Important: Previous version behaved as if !NotifyPropertyChanges was True.
+        
+  * Added new property: *!NonNestedPropertiesToSupervise*. Gets or sets non nested properties (implementing INotifyPropertyChanged) that must be listened in order to detect changes in its properties.
+  This could be interesting when those properties could be used in controls like combo, and the modification of one of their properties could affect the value showed as display member.
+  Only non nested properties implementing !INotifyPropertyChanged that are explicitly defined here will be considered. Otherwise, perhaps many properties should be queried at !PropertyChanged events, and ocassionally the queries could be expensive.
+
+  + Important: Previous version considered all non nested properties implementing INotifyPropertyChanged.
+
+
+-------------------------------------------------------------
 Version: 2.0.0   - date: 01/feb/2012
 
 Multiple improvements and optimizations, achieved from an important redesign of the code. It has been revised the source code of !BindingSource component, from which it inherits. Among the improvements, it is necessary to emphasize the proper treatment of changes in design time (and runtime) of properties as !BindableNestedProperties so that controls binded to this datasources reflect changes immediately, and also the management of nested components. Also it is now properly managed the use of nested properties on bands with more than two levels deep. It is also correctly treated the case where this component uses as datasource another !BindingSource component. If that component is also an !ObjectBindingSource then it will take into account correctly all the properties that it can offer.
