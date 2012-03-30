@@ -1,4 +1,17 @@
 -------------------------------------------------------------
+Version: 2.1.1   - date: 30/mar/2012
+
+Fixes several bugs: 
+
+  * Modification on !RelatedObjectBindingSources property didn't trigger !ListChanged(!PropertyDescriptorChanged) event, and so   hierarchical controls (ej. !UltraGrid) were not reflecting at design time that changes.
+ 
+  * If a component was not using nested properties then the related components defined in !RelatedObjectBindingSources were completely ignored. In that case, changes in the nested properties, eg, of these related components were not considered and not reflected in the bands   of hierarchical components.
+   
+  * Fixed a bug related to components not using !BindableNestedProperties nor !NonNestedPropertiesToSupervise, with !NotifyPropertyChanges=True and where the data source was a list that did not generate !ListChanged events (eg a single IList, not a IBindingList).
+  >> This last error could be (not sure) the source of an unhandled exception in the Visual Studio that forced to reboot the IDE.
+
+
+-------------------------------------------------------------
 Version: 2.1.0   - date: 18/mar/2012
 
   * Added new property: *!NotifyPropertyChanges*, that Indicates if the component must offer additional support for changes in properties. Base !BindingSource communicate changes in properties of items of the datasource list (if that items implements INotifyPropertyChanged). If it is necessary to notify changes in other properties, such as nested properties then this property, !NotifyPropertyChanges must be set to True. [Default: False]
