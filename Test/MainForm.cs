@@ -284,13 +284,16 @@ public partial class MainForm : Form
                     SimpleClasses.Clear(); 
 
                     // As Orders and OtherItems don't implement IBindingList but only IList, deleting these lists will raise
-                    // an error on the DataGridView binded to the objects BindingSource on trying to refresth their cells, because
+                    // an error on the DataGridView binded to the objects BindingSource on trying to refresh their cells, because
                     // BindingSource objects are not aware of the other objects deletion and so they don't inform to the consumers
                     // (DataGridView in this case)
                     // Also, if we make DataSource = null in the BindingSource controls will cause the same error because they will trigger 
                     // the method MyBase.ResetBindings(True) and that will raise ListChanged, forcing the DataGridView to refresh their
                     // content
                     // ==> We must execute .ResetBindings(false) just after the .Clear() previous
+
+                    productsBindingSource.DataSource = typeof(Product);
+                    customersBindingSource.DataSource = typeof(Customer);
 
                     ordersBindingSource.ResetBindings(false);
                     otherItemsBindingSource.ResetBindings(false);
@@ -299,8 +302,6 @@ public partial class MainForm : Form
 
                     orderlinesBindingSource.DataSource = null;
                     ordersBindingSource.DataSource = null;
-                    productsBindingSource.DataSource = null;
-                    customersBindingSource.DataSource = null;
                     otherItemsBindingSource.DataSource = null;
                     simpleClassesBindingSource.DataSource = null;
                     break;

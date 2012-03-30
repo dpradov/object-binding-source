@@ -91,7 +91,9 @@
     <None Include="app.config" />
     <None Include="Properties\DataSources\Class1.datasource" />
     <None Include="Properties\DataSources\Customer.datasource" />
+    <None Include="Properties\DataSources\Customer1.datasource" />
     <None Include="Properties\DataSources\Order.datasource" />
+    <None Include="Properties\DataSources\Order2.datasource" />
     <None Include="Properties\DataSources\OtherItem.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\Settings.settings">
