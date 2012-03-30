@@ -270,14 +270,15 @@ public partial class MainForm : Form
 
                     orderlinesBindingSource.DataSource = null;
                     ordersBindingSource.DataSource = null;
-                    productsBindingSource.DataSource = null;
-                    customersBindingSource.DataSource = null;
 
 #if USE_BLIST
                     ordersBindingSource_2.DataSource = null;
 #endif
 
                     detailOrderLinesBindingSource.DataSource = null;
+
+                    productsBindingSource.DataSource = null;
+                    customersBindingSource.DataSource = null;
                     break;
 
                 case "12":   // BindingSourceS.Dispose
